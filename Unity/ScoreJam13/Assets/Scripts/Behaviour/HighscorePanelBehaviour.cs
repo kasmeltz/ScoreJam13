@@ -78,23 +78,23 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
             foreach(var score in scores)
             {
-                int length = Math.Min(score.playerName.Length, 12);
+                int length = Math.Min(score.playerName.Length, 10);
 
                 sb
-                    .Append($"{score.playerName.Substring(0, length),12}");
+                    .Append($"{score.playerName.Substring(0, length),10}");
                 
                 sb
-                    .Append("\t\t");
+                    .Append("\t");
 
                 sb.Append($"{score.score,9}");
 
                 sb
-                    .Append("\t\t");
+                    .Append("\t");
 
                 var date = DateTime.FromFileTime(score.fileTime);
 
                 sb
-                    .Append($"{date.ToLongDateString(),24}");
+                    .Append($"{date.ToLongDateString(),20}");
 
                 sb.AppendLine();
             }
@@ -112,15 +112,15 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 .scores
                 .Where(o => !o.cheating)
                 .OrderByDescending(o => o.score)
-                .Take(20)
+                .Take(25)
                 .ToList();
 
             var cheaters = HighScoreHandler
                 .HighScores
                 .scores
-                .Where(o => !o.cheating)
+                .Where(o => o.cheating)
                 .OrderByDescending(o => o.score)
-                .Take(20)
+                .Take(25)
                 .ToList();
 
             SetHighScoreList(nonCheaters, NonCheatersText);
