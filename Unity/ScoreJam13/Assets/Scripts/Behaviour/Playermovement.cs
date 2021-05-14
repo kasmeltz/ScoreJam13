@@ -8,6 +8,12 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         public float BlinkDistance;
         public float Strafespeed;
 
+        public float invincebletime;
+        
+        protected float invincebleCountdown { get; set; }
+
+        protected bool invinceble { get; set; }
+
         public Vector3 blink;
 
         protected Vector3 Movement { get; set; }
@@ -85,6 +91,18 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected void Update()
         {
+            if (invinceble)
+            {
+                if (invincebleCountdown > 0)
+                {
+                    invincebleCountdown -= Time.deltaTime;
+                    if (invincebleCountdown <= 0)
+                    {
+                        MakeInvincible(false);
+                    }
+                }
+            }
+
             Vector2 topRightCorner = new Vector2(1, 1);
 
             CameraEdge = Camera
@@ -112,11 +130,35 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             {
                 OnBlinked();
             }
+
+            transform.position += blink;
+
+            MakeInvincible(true);
+
+            OnBlinked();
+        }
+
+        protected void MakeInvincible(bool isInvincible)
+        {
+            if (isInvincible)
+            {
+                invinceble = true;
+                invincebleCountdown = invincebletime;
+            }
+            else
+            {
+                invinceble = false;
+                invincebleCountdown = 0;
+            }
         }
 
         protected void OnCollisionEnter2D(Collision2D collision)
         {
-            Die();
+            if(!invinceble)
+            {
+                Die();
+            }
+            
         }
 
         private void SetVariables()
