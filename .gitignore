@@ -12,3 +12,6 @@
 /Unity/ScoreJam13/Assembly-CSharp.csproj
 /Unity/ScoreJam13/ScoreJam13.sln
 /Unity/ScoreJam13/.vs/ScoreJam13/v16
+/Server/ScoreJam13Server/.vs/ScoreJam13Server
+/Server/ScoreJam13Server/ScoreJam13Server.WebAPI/bin/Debug/net5.0
+/Server/ScoreJam13Server/ScoreJam13Server.WebAPI/obj
