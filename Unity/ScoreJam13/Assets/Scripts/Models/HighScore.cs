@@ -10,7 +10,9 @@ namespace KasJam.ScoreJam13.Unity.Models
         public string playerName;
 
         public int score;
-
+        
         public string checkSum;
+
+        public bool cheating;
     }
 }

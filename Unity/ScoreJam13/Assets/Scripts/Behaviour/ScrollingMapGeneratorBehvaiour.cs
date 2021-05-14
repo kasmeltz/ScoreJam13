@@ -19,26 +19,19 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         protected float ScrollY { get; set; }
 
         protected Vector2 CameraEdge { get; set; }
-
-        protected Playermovement Player { get; set; }
-
-        protected bool TilesPopulated { get; set; }
-
-        #endregion
-
-        #region Event Handlers
-
-        private void Player_Died(object sender, System.EventArgs e)
-        {
-            Reset();
-        }
-
+      
         #endregion
 
         #region Public Methods
 
         public void Reset()
         {
+            Vector2 topRightCorner = new Vector2(1, 1);
+
+            CameraEdge = Camera
+                .main
+                .ViewportToWorldPoint(topRightCorner);
+
             Floor
                 .ClearAllTiles();
 
@@ -54,10 +47,10 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         protected void PopulateTiles()
         {
             var min = Floor
-                .WorldToCell(-new Vector3(CameraEdge.x + 0.64f, CameraEdge.y + 0.64f, 0));
+                .WorldToCell(-new Vector3(CameraEdge.x + 1.28f, CameraEdge.y + 1.28f, 0));
 
             var max = Floor
-                .WorldToCell(new Vector3(CameraEdge.x + 0.64f, CameraEdge.y + 0.64f, 0));
+                .WorldToCell(new Vector3(CameraEdge.x + 1.28f, CameraEdge.y + 1.28f, 0));
 
             var size = new Vector3Int(max.x - min.x, max.y - min.y, 1);
 
@@ -149,27 +142,13 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         #region Unity
 
         protected void Update()
-        {
-            if (!TilesPopulated)
+        {           
+            if (!Playermovement.IsPlaying)
             {
-                TilesPopulated = true;
-
-                Vector2 topRightCorner = new Vector2(1, 1);
-
-                CameraEdge = Camera
-                    .main
-                    .ViewportToWorldPoint(topRightCorner);
-
-                Reset();
+                return;
             }
-            
-            ScrollTiles();
-        }
 
-        protected override void Awake()
-        {
-            Player = FindObjectOfType<Playermovement>();
-            Player.Died += Player_Died;
+            ScrollTiles();
         }
 
         #endregion

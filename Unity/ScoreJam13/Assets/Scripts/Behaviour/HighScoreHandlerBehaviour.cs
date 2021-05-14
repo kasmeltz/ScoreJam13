@@ -7,14 +7,14 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
     using UnityEngine;
     using UnityEngine.Networking;
 
-    [AddComponentMenu("AScoreJam13/HighScoreSender")]
+    [AddComponentMenu("AScoreJam13/HighScoreHandler")]
     public class HighScoreHandlerBehaviour : BehaviourBase
     {
         protected static string WebApiURL = "https://scorejam13.azurewebsites.net/highscore";
 
-        protected HighScoreList HighScores { get; set; }
+        public HighScoreList HighScores { get; protected set; }
 
-        public IEnumerator GetHighScores()
+        public IEnumerator LoadHighScores()
         {
             using (UnityWebRequest www = UnityWebRequest
                 .Get(WebApiURL))
@@ -96,8 +96,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 .Awake();
 
             HighScores = new HighScoreList();
-
-            StartCoroutine(GetHighScores());
         }
     }
 }

@@ -5,6 +5,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
     public class Playermovement : MonoBehaviour
     {
+        public static bool IsPlaying { get; set; }
+
         public float BlinkDistance;
         public float Strafespeed;
 
@@ -91,6 +93,11 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected void Update()
         {
+            if (!IsPlaying)
+            {
+                return;
+            }
+
             if (invinceble)
             {
                 if (invincebleCountdown > 0)
@@ -134,8 +141,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             transform.position += blink;
 
             MakeInvincible(true);
-
-            OnBlinked();
         }
 
         protected void MakeInvincible(bool isInvincible)
@@ -157,8 +162,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             if(!invinceble)
             {
                 Die();
-            }
-            
+            }            
         }
 
         private void SetVariables()

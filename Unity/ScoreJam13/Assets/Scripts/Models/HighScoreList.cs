@@ -12,5 +12,7 @@ namespace KasJam.ScoreJam13.Unity.Models
         }
 
         public List<HighScore> scores;
+
+        public object OrderBy { get; internal set; }
     }
 }

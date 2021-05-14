@@ -19,12 +19,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             Player = FindObjectOfType<Playermovement>();
 
             Player.Blinked += Player_Blinked;
-            Player.Died += Player_Died;
-        }
-
-        private void Player_Died(object sender, System.EventArgs e)
-        {
-            score = 0;
         }
 
         private void Player_Blinked(object sender, System.EventArgs e)
@@ -40,6 +34,11 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         // Update is called once per frame
         void Update()
         {
+            if (!Playermovement.IsPlaying)
+            {
+                return;
+            }
+
             score += Time.deltaTime * scoretoadd;
             int roundedscore = Mathf.RoundToInt(score);
             scoretxt.text = roundedscore.ToString();

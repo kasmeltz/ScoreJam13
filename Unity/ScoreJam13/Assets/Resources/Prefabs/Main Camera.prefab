@@ -199,6 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   scoretoadd: 20
+  BlinkCost: 5
   scoretxt: {fileID: 8990906960818605567}
 --- !u!1 &8990906961223285583
 GameObject:
