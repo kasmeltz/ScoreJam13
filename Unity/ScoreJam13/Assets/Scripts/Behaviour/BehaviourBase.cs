@@ -4,5 +4,9 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
     public class BehaviourBase : MonoBehaviour
     {
+        protected virtual void Awake()
+        {
+
+        }
     }
 }
