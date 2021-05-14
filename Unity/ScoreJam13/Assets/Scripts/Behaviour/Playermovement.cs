@@ -1,64 +1,155 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Playermovement : MonoBehaviour
+namespace KasJam.ScoreJam13.Unity.Behaviours
 {
-    public float BlinkDistance;
-    public float Strafespeed;
-    Vector2 movement;
-    Vector2 pos;
-    public Vector3 blink;
-    // Start is called before the first frame update
-    void Start()
+    using System;
+    using UnityEngine;
+
+    public class Playermovement : MonoBehaviour
     {
+        public float BlinkDistance;
+        public float Strafespeed;
         
-    }
+        public Vector3 blink;
 
-    // Update is called once per frame
-    void Update()
-    {
-        SetVariables();
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Blink();
-        }
-    }
+        protected Vector3 Movement { get; set; }
 
-    
-
-    private void FixedUpdate()
-    {
-        Normalmovement();
-    }
-    void Normalmovement()
-    {
-        transform.Translate(pos + movement * Strafespeed * Time.fixedDeltaTime);
+        protected Vector2 CameraEdge { get; set; }
         
-    }
-    void Blink()
-    {
-        transform.position += blink;
-    }
-    private void SetVariables()
-    {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-        if (movement.x > 0)
+        protected SpriteRenderer SpriteRenderer { get; set; }
+
+        #region Events
+
+        public event EventHandler Blinked;
+
+        protected void OnBlinked()
         {
-            blink = new Vector3(BlinkDistance, 0, 0);
+            Blinked?
+                .Invoke(this, EventArgs.Empty);
         }
-        if (movement.x < 0)
+
+        public event EventHandler Died;
+
+        protected void OnDied()
         {
-            blink = new Vector3(-BlinkDistance, 0, 0);
+            Died?
+                .Invoke(this, EventArgs.Empty);
         }
-        if (movement.y > 0)
+
+        #endregion
+
+        // Start is called before the first frame update
+        void Start()
         {
-            blink = new Vector3(0, BlinkDistance, 0);
+            SpriteRenderer = GetComponent<SpriteRenderer>();
+
+            Vector2 topRightCorner = new Vector2(1, 1);
+
+            CameraEdge = Camera
+                .main
+                .ViewportToWorldPoint(topRightCorner);
+
         }
-        if (movement.y < 0)
+
+        protected bool CanMoveHere(Vector3 pos)
         {
-            blink = new Vector3(0, -BlinkDistance, 0);
+            var w = 2 * SpriteRenderer.sprite.rect.width / 100;
+            var h = 2 * SpriteRenderer.sprite.rect.height / 100;
+
+            if (pos.x > CameraEdge.x - w)
+            {
+                return false;
+            }
+
+            if (pos.x < -CameraEdge.x + w)
+            {
+                return false;
+            }
+
+            if (pos.y > CameraEdge.y - h)
+            {
+                return false;
+            }
+
+            if (pos.y < -CameraEdge.y + h)
+            {
+                return false;
+            }
+
+            return true;                
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            SetVariables();
+            
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Blink();
+            }
+
+            var pos = transform.position + (Movement * Strafespeed * Time.deltaTime);
+
+            if (!CanMoveHere(pos))
+            {
+                Debug.Log($"NO MOVE!");
+
+                return;
+            }
+
+            transform.position = pos;
+        }
+
+        void Blink()
+        {
+            var pos = transform.position + blink;
+            if (!CanMoveHere(pos))
+            {
+                return;
+            }
+
+            if (Physics
+                .Raycast(transform.position, blink.normalized, out RaycastHit hitInfo, BlinkDistance))
+            {
+                if (hitInfo.collider != null)
+                {
+                    return;
+                }
+            }
+
+            transform.position += blink;
+
+            OnBlinked();
+        }
+
+        protected void OnCollisionEnter2D(Collision2D collision)
+        {
+            Debug
+                .Log(collision);    
+        }
+
+        private void SetVariables()
+        {
+            var movement = Movement;
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+            Movement = movement;
+
+            if (Movement.x > 0)
+            {
+                blink = new Vector3(BlinkDistance, 0, 0);
+            }
+            if (Movement.x < 0)
+            {
+                blink = new Vector3(-BlinkDistance, 0, 0);
+            }
+            if (Movement.y > 0)
+            {
+                blink = new Vector3(0, BlinkDistance, 0);
+            }
+            if (Movement.y < 0)
+            {
+                blink = new Vector3(0, -BlinkDistance, 0);
+            }
         }
     }
 }
