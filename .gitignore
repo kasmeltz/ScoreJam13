@@ -3,3 +3,12 @@
 ################################################################################
 
 /.vs
+/Unity/ScoreJam13/Library
+/Unity/ScoreJam13/Logs
+/Unity/ScoreJam13/obj/Debug
+/Unity/ScoreJam13/Temp
+/Unity/ScoreJam13/UserSettings
+/Unity/ScoreJam13/.vsconfig
+/Unity/ScoreJam13/Assembly-CSharp.csproj
+/Unity/ScoreJam13/ScoreJam13.sln
+/Unity/ScoreJam13/.vs/ScoreJam13/v16
