@@ -133,7 +133,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             var pos = transform.position + blink;
             if (!CanMoveHere(pos))
             {
-                transform.position = new Vector3(CameraEdge.x,CameraEdge.y, 0);
+                return;
             }
 
             transform.position += blink;
