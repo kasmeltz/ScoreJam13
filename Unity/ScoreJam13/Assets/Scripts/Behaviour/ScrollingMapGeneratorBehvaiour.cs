@@ -14,8 +14,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public TileBase[] WallTiles;
 
-        //public float WallWidth;
-
         public float ScrollSpeed;
 
         protected float ScrollY { get; set; }
@@ -23,6 +21,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         protected Vector2 CameraEdge { get; set; }
 
         protected Playermovement Player { get; set; }
+
+        protected bool TilesPopulated { get; set; }
 
         #endregion
 
@@ -149,23 +149,27 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         #region Unity
 
         protected void Update()
-        {           
+        {
+            if (!TilesPopulated)
+            {
+                TilesPopulated = true;
+
+                Vector2 topRightCorner = new Vector2(1, 1);
+
+                CameraEdge = Camera
+                    .main
+                    .ViewportToWorldPoint(topRightCorner);
+
+                Reset();
+            }
+            
             ScrollTiles();
         }
 
         protected override void Awake()
         {
-            Vector2 topRightCorner = new Vector2(1, 1);
-
-            CameraEdge = Camera
-                .main
-                .ViewportToWorldPoint(topRightCorner);
-
             Player = FindObjectOfType<Playermovement>();
-
             Player.Died += Player_Died;
-
-            Reset();
         }
 
         #endregion

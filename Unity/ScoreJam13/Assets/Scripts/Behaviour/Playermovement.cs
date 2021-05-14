@@ -7,13 +7,13 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
     {
         public float BlinkDistance;
         public float Strafespeed;
-        
+
         public Vector3 blink;
 
         protected Vector3 Movement { get; set; }
 
         protected Vector2 CameraEdge { get; set; }
-        
+
         protected SpriteRenderer SpriteRenderer { get; set; }
 
         protected Rigidbody2D Rigidbody { get; set; }
@@ -42,41 +42,35 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         {
             SpriteRenderer = GetComponent<SpriteRenderer>();
 
-            Vector2 topRightCorner = new Vector2(1, 1);
-
-            CameraEdge = Camera
-                .main
-                .ViewportToWorldPoint(topRightCorner);
-
             Rigidbody = GetComponent<Rigidbody2D>();
         }
 
-        protected bool CanMoveHere(Vector3 pos)
+        protected Vector3 GetMoveHere(Vector3 pos)
         {
-            var w = 4 * SpriteRenderer.sprite.rect.width / 100;
-            var h = 4 * SpriteRenderer.sprite.rect.height / 100;
+            var w = (SpriteRenderer.sprite.rect.width * transform.localScale.x) / 100;
+            var h = (SpriteRenderer.sprite.rect.height * transform.localScale.y) / 100;
 
             if (pos.x > CameraEdge.x - w)
             {
-                return false;
+                pos.x = CameraEdge.x - w;
             }
 
             if (pos.x < -CameraEdge.x + w)
             {
-                return false;
+                pos.x = -CameraEdge.x + w;
             }
 
             if (pos.y > CameraEdge.y - h)
             {
-                return false;
+                pos.y = CameraEdge.y - h;
             }
 
             if (pos.y < -CameraEdge.y + h)
             {
-                return false;
+                pos.y = -CameraEdge.y + h;
             }
 
-            return true;                
+            return pos;
         }
 
         public void Die()
@@ -91,6 +85,12 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected void Update()
         {
+            Vector2 topRightCorner = new Vector2(1, 1);
+
+            CameraEdge = Camera
+                .main
+                .ViewportToWorldPoint(topRightCorner);
+
             SetVariables();
 
             if (Input
@@ -100,26 +100,18 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             }
 
             var pos = transform.position + (Movement * Strafespeed * Time.deltaTime);
-
-            if (!CanMoveHere(pos))
-            {
-                return;
-            }
-
-            transform.position = pos;
+            transform.position = GetMoveHere(pos);
         }
 
         void Blink()
         {
             var pos = transform.position + blink;
-            if (!CanMoveHere(pos))
+            transform.position = GetMoveHere(pos);
+
+            if (transform.position.x != pos.x || transform.position.y != pos.y)
             {
-                return;
+                OnBlinked();
             }
-
-            transform.position += blink;
-
-            OnBlinked();
         }
 
         protected void OnCollisionEnter2D(Collision2D collision)
