@@ -7,7 +7,12 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
     {
         public float BlinkDistance;
         public float Strafespeed;
+
+        public bool invinceble;
+        public float invincebletime;
+        public float currenttime;
         
+
         public Vector3 blink;
 
         protected Vector3 Movement { get; set; }
@@ -49,6 +54,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 .ViewportToWorldPoint(topRightCorner);
 
             Rigidbody = GetComponent<Rigidbody2D>();
+            currenttime = invincebletime;
         }
 
         protected bool CanMoveHere(Vector3 pos)
@@ -107,6 +113,19 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             }
 
             transform.position = pos;
+
+            if (invinceble)
+            {
+                
+                if (currenttime > 0)
+                {
+                    currenttime -= Time.deltaTime;
+                }
+                else
+                {
+                    invinceble = false;
+                }
+            }
         }
 
         void Blink()
@@ -114,17 +133,22 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             var pos = transform.position + blink;
             if (!CanMoveHere(pos))
             {
-                return;
+                transform.position = new Vector3(CameraEdge.x,CameraEdge.y, 0);
             }
 
             transform.position += blink;
-
+            invinceble = true;
+            currenttime = invincebletime;
             OnBlinked();
         }
 
         protected void OnCollisionEnter2D(Collision2D collision)
         {
-            Die();
+            if(!invinceble)
+            {
+                Die();
+            }
+            
         }
 
         private void SetVariables()
