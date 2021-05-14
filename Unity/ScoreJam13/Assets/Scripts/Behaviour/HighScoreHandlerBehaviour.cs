@@ -1,7 +1,6 @@
 namespace KasJam.ScoreJam13.Unity.Behaviours
 {
     using KasJam.ScoreJam13.Unity.Models;
-    using System;
     using System.Collections;
     using System.Security.Cryptography;
     using System.Text;
@@ -9,16 +8,45 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
     using UnityEngine.Networking;
 
     [AddComponentMenu("AScoreJam13/HighScoreSender")]
-    public class HighScoreSenderBehaviour : BehaviourBase
+    public class HighScoreHandlerBehaviour : BehaviourBase
     {
-        protected static string WebApiURL = "http://localhost:63193/highscore";
+        protected static string WebApiURL = "https://scorejam13.azurewebsites.net/highscore";
+
+        protected HighScoreList HighScores { get; set; }
+
+        public IEnumerator GetHighScores()
+        {
+            using (UnityWebRequest www = UnityWebRequest
+                .Get(WebApiURL))
+            {
+                yield return www
+                    .SendWebRequest();
+
+                if (www.result != UnityWebRequest.Result.Success)
+                {
+                    Debug
+                        .Log(www.error);
+                }
+                else
+                {
+
+                    Debug
+                        .Log("Highscore download complete!");
+
+                    string json = $"{{\"scores\": {www.downloadHandler.text} }}";
+
+                    HighScores = JsonUtility
+                        .FromJson<HighScoreList>(json);
+                }
+            }
+        }
 
         public IEnumerator SendHighScore(HighScore highScore)
         {
             using (var md5 = MD5
                 .Create())
             {
-                string toHash = $"{highScore.PlayerName}{highScore.Score}{highScore.FileTime}";
+                string toHash = $"{highScore.playerName}{highScore.score}{highScore.fileTime}";
 
                 byte[] toHashBytes = Encoding
                     .ASCII
@@ -34,7 +62,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                     sb.Append(hashBytes[i].ToString("X2"));
                 }
                 
-                highScore.CheckSum = sb.ToString();
+                highScore.checkSum = sb.ToString();
             }
 
             string json = JsonUtility
@@ -67,12 +95,9 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             base
                 .Awake();
 
-            StartCoroutine(SendHighScore(new HighScore
-            {
-                PlayerName = "kasmeltz",
-                FileTime = DateTime.UtcNow.ToFileTimeUtc(),
-                Score = 1900
-            }));
+            HighScores = new HighScoreList();
+
+            StartCoroutine(GetHighScores());
         }
     }
 }

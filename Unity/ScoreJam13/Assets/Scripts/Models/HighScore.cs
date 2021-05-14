@@ -1,13 +1,16 @@
 namespace KasJam.ScoreJam13.Unity.Models
 {
+    using System;
+
+    [Serializable]
     public class HighScore
     {
-        public long FileTime;
+        public long fileTime;
 
-        public string PlayerName;
+        public string playerName;
 
-        public int Score;
+        public int score;
 
-        public string CheckSum;
+        public string checkSum;
     }
 }
