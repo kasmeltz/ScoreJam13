@@ -38,7 +38,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         #endregion
 
-        // Start is called before the first frame update
         void Start()
         {
             SpriteRenderer = GetComponent<SpriteRenderer>();
@@ -90,7 +89,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             OnDied();
         }
 
-        protected void FixedUpdate()
+        protected void Update()
         {
             SetVariables();
 
@@ -100,16 +99,14 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 Blink();
             }
 
-            //var pos = transform.position + (Movement * Strafespeed * Time.deltaTime);
-            var pos = transform.position + (Movement * Strafespeed * Time.fixedDeltaTime);
+            var pos = transform.position + (Movement * Strafespeed * Time.deltaTime);
 
             if (!CanMoveHere(pos))
             {
                 return;
             }
 
-            Rigidbody
-                .MovePosition(pos);
+            transform.position = pos;
         }
 
         void Blink()
@@ -119,17 +116,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             {
                 return;
             }
-
-            /*
-            if (Physics
-                .Raycast(transform.position, blink.normalized, out RaycastHit hitInfo, BlinkDistance))
-            {
-                if (hitInfo.collider != null)
-                {
-                    return;
-                }
-            }
-            */
 
             transform.position += blink;
 
