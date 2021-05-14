@@ -14,13 +14,24 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public TileBase[] WallTiles;
 
-        public float WallWidth;
+        //public float WallWidth;
 
         public float ScrollSpeed;
 
         protected float ScrollY { get; set; }
 
-        protected Vector2 CameraEdge { get; set; }        
+        protected Vector2 CameraEdge { get; set; }
+
+        protected Playermovement Player { get; set; }
+
+        #endregion
+
+        #region Event Handlers
+
+        private void Player_Died(object sender, System.EventArgs e)
+        {
+            Reset();
+        }
 
         #endregion
 
@@ -57,11 +68,11 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 for (int x = tileBounds.min.x; x < tileBounds.max.x; x++)
                 {
                     var tile = FloorTiles[0];
-                    if (x <= tileBounds.xMin + WallWidth ||
-                        x >= tileBounds.xMax - WallWidth)
-                    {
-                        tile = WallTiles[0];
-                    }
+                    //if (x <= tileBounds.xMin + WallWidth ||
+                        //x >= tileBounds.xMax - WallWidth)
+                    //{
+                        //tile = WallTiles[0];
+                    //} 
 
                     Floor
                         .SetTile(new Vector3Int(x, y, 0), tile);
@@ -91,11 +102,18 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 for (int x = 0; x < bounds.size.x; x++)
                 {
                     var tile = FloorTiles[0];
-                    if (x <= WallWidth ||
-                        x >= bounds.size.x - WallWidth)
-                    {
-                        tile = WallTiles[0];
-                    }
+                    //if (x <= WallWidth ||
+                        //x >= bounds.size.x - WallWidth)
+                    //{
+                        //tile = WallTiles[0];
+                    //}
+                    //else
+                    //{
+                        if (Random.value >= 0.9)
+                        {
+                            tile = WallTiles[0];
+                        }
+                    //}
 
                     tiles[x] = tile;
                 }
@@ -142,6 +160,10 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             CameraEdge = Camera
                 .main
                 .ViewportToWorldPoint(topRightCorner);
+
+            Player = FindObjectOfType<Playermovement>();
+
+            Player.Died += Player_Died;
 
             Reset();
         }

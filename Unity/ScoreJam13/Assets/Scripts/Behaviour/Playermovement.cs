@@ -16,6 +16,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         
         protected SpriteRenderer SpriteRenderer { get; set; }
 
+        protected Rigidbody2D Rigidbody { get; set; }
+
         #region Events
 
         public event EventHandler Blinked;
@@ -47,12 +49,13 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 .main
                 .ViewportToWorldPoint(topRightCorner);
 
+            Rigidbody = GetComponent<Rigidbody2D>();
         }
 
         protected bool CanMoveHere(Vector3 pos)
         {
-            var w = 2 * SpriteRenderer.sprite.rect.width / 100;
-            var h = 2 * SpriteRenderer.sprite.rect.height / 100;
+            var w = 4 * SpriteRenderer.sprite.rect.width / 100;
+            var h = 4 * SpriteRenderer.sprite.rect.height / 100;
 
             if (pos.x > CameraEdge.x - w)
             {
@@ -77,26 +80,36 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             return true;                
         }
 
-        // Update is called once per frame
-        void Update()
+        public void Die()
+        {
+            transform.position = Vector2.zero;
+
+            Rigidbody
+                .MovePosition(Vector2.zero);
+
+            OnDied();
+        }
+
+        protected void FixedUpdate()
         {
             SetVariables();
-            
-            if (Input.GetKeyDown(KeyCode.Space))
+
+            if (Input
+                .GetKeyDown(KeyCode.Space))
             {
                 Blink();
             }
 
-            var pos = transform.position + (Movement * Strafespeed * Time.deltaTime);
+            //var pos = transform.position + (Movement * Strafespeed * Time.deltaTime);
+            var pos = transform.position + (Movement * Strafespeed * Time.fixedDeltaTime);
 
             if (!CanMoveHere(pos))
             {
-                Debug.Log($"NO MOVE!");
-
                 return;
             }
 
-            transform.position = pos;
+            Rigidbody
+                .MovePosition(pos);
         }
 
         void Blink()
@@ -107,6 +120,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 return;
             }
 
+            /*
             if (Physics
                 .Raycast(transform.position, blink.normalized, out RaycastHit hitInfo, BlinkDistance))
             {
@@ -115,6 +129,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                     return;
                 }
             }
+            */
 
             transform.position += blink;
 
@@ -123,8 +138,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug
-                .Log(collision);    
+            Die();
         }
 
         private void SetVariables()
