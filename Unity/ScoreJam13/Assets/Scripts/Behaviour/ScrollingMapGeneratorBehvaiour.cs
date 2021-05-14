@@ -14,11 +14,13 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public TileBase[] WallTiles;
 
+        public float WallWidth;
+
+        public float ScrollSpeed;
+
         protected float ScrollY { get; set; }
 
-        protected Vector2 CameraEdge { get; set; }
-
-        protected float WallWidth { get; set; }
+        protected Vector2 CameraEdge { get; set; }        
 
         #endregion
 
@@ -69,13 +71,15 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected void ScrollTiles()
         {
-            Floor.transform.position += new Vector3(0, -Time.deltaTime, 0);
+            var toScroll = Time.deltaTime * ScrollSpeed;
 
-            ScrollY += Time.deltaTime;
+            Floor.transform.position += new Vector3(0, -toScroll, 0);
 
-            while (ScrollY >= 0.32f)
+            ScrollY += toScroll;
+
+            while (ScrollY >= 0.64f)
             {
-                ScrollY -= 0.32f;
+                ScrollY -= 0.64f;
 
                 var bounds = Floor.cellBounds;
 
@@ -138,8 +142,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             CameraEdge = Camera
                 .main
                 .ViewportToWorldPoint(topRightCorner);
-
-            WallWidth = 15;
 
             Reset();
         }
