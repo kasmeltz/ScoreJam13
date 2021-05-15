@@ -28,8 +28,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             score -= BlinkCost;
             if (score < 0)
             {
-                Player
-                    .Die();
+                score = 0;
             }
             StartCoroutine(Shake(.1f,.2f));
         }

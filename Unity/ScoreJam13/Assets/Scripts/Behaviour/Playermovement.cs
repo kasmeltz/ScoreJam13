@@ -26,6 +26,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected Rigidbody2D Rigidbody { get; set; }
 
+        protected ScoreCounter ScoreCounter { get; set; }
+
         #region Events
 
         public event EventHandler Blinked;
@@ -48,6 +50,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         void Start()
         {
+            ScoreCounter = FindObjectOfType<ScoreCounter>();
+
             SpriteRenderer = GetComponent<SpriteRenderer>();
 
             Rigidbody = GetComponent<Rigidbody2D>();
@@ -130,10 +134,14 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         }
 
         void Blink()
-        {
+        {   
+            if (ScoreCounter.score < ScoreCounter.BlinkCost)
+            {
+                return;
+            }
+
             var pos = transform.position + blink;
             transform.position = GetMoveHere(pos);
-
             
             OnBlinked();
             transform.position += blink;
