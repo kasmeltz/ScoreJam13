@@ -163,6 +163,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             var pos = transform.position + BlinkVector;
             transform.position = GetMoveHere(pos);
 
+            FindObjectOfType<AudioManager>().Playoneshot("BlinkS");
+
             Animator
                 .SetTrigger("Blink");
 
@@ -214,18 +216,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             }
         }
 
-        public void PlayDashsound(int start)
-        {
-            if(start > 0)
-            {
-                FindObjectOfType<AudioManager>().Playoneshot("BlinkS");
-            }
-            else if(start < 0)
-            {
-                FindObjectOfType<AudioManager>().Playoneshot("BlinkE");
-
-            }
-
-        }
+        
     }
 }
