@@ -29,10 +29,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 }
                 else
                 {
-
-                    Debug
-                        .Log("Highscore download complete!");
-
                     string json = $"{{\"scores\": {www.downloadHandler.text} }}";
 
                     HighScores = JsonUtility
@@ -81,11 +77,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 {
                     Debug
                         .Log(www.error);
-                }
-                else
-                {
-                    Debug
-                        .Log("Highscore upload complete!");
                 }
             }
         }

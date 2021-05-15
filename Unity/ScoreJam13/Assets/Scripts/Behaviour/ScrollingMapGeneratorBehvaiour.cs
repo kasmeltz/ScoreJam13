@@ -16,9 +16,13 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public float ScrollSpeed;
 
+        public float SpeedIncreasePerSecond;
+
         protected float ScrollY { get; set; }
 
         protected Vector2 CameraEdge { get; set; }
+
+        public float ActualScrollSpeed { get; protected set; }
       
         #endregion
 
@@ -26,6 +30,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public void Reset()
         {
+            ActualScrollSpeed = ScrollSpeed;
+                
             Vector2 topRightCorner = new Vector2(1, 1);
 
             CameraEdge = Camera
@@ -61,11 +67,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 for (int x = tileBounds.min.x; x < tileBounds.max.x; x++)
                 {
                     var tile = FloorTiles[0];
-                    //if (x <= tileBounds.xMin + WallWidth ||
-                        //x >= tileBounds.xMax - WallWidth)
-                    //{
-                        //tile = WallTiles[0];
-                    //} 
 
                     Floor
                         .SetTile(new Vector3Int(x, y, 0), tile);
@@ -75,7 +76,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected void ScrollTiles()
         {
-            var toScroll = Time.deltaTime * ScrollSpeed;
+            var toScroll = Time.deltaTime * ActualScrollSpeed;
 
             Floor.transform.position += new Vector3(0, -toScroll, 0);
 
@@ -87,35 +88,21 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
                 var bounds = Floor.cellBounds;
 
-                //Debug
-                //.Log($"CELL BOUNDS BEFORE ADDING '{Floor.cellBounds}'");
-
                 var tiles = new TileBase[bounds.size.x];
                 // add new row of cells
                 for (int x = 0; x < bounds.size.x; x++)
                 {
                     var tile = FloorTiles[0];
-                    //if (x <= WallWidth ||
-                        //x >= bounds.size.x - WallWidth)
-                    //{
-                        //tile = WallTiles[0];
-                    //}
-                    //else
-                    //{
-                        if (Random.value >= 0.9)
-                        {
-                            tile = WallTiles[0];
-                        }
-                    //}
+                    if (Random.value >= 0.9)
+                    {
+                        tile = WallTiles[0];
+                    }
 
                     tiles[x] = tile;
                 }
                 var addBounds = new BoundsInt(bounds.xMin, bounds.yMax, 0, bounds.size.x, 1, 1);
                 Floor
                     .SetTilesBlock(addBounds, tiles);
-
-                //Debug
-                //.Log($"CELL BOUNDS AFTER ADDING '{Floor.cellBounds}'");
 
                 bounds = Floor.cellBounds;
 
@@ -131,9 +118,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
                 Floor
                     .CompressBounds();
-
-                //Debug
-                //.Log($"CELL BOUNDS AFTER DELETING '{Floor.cellBounds}'");
             }
         }
 
@@ -147,6 +131,9 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             {
                 return;
             }
+
+            float speedUpdate = SpeedIncreasePerSecond * Time.deltaTime;
+            ActualScrollSpeed *= (1 + speedUpdate);
 
             ScrollTiles();
         }

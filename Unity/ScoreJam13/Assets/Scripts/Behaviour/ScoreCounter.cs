@@ -15,12 +15,17 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         
         protected Playermovement Player { get; set; }
 
+        protected ScrollingMapGeneratorBehvaiour MapGenerator { get; set; }
+
+
         // Start is called before the first frame update
         void Start()
         {
             Player = FindObjectOfType<Playermovement>();
 
             Player.Blinked += Player_Blinked;
+
+            MapGenerator = FindObjectOfType<ScrollingMapGeneratorBehvaiour>();
         }
 
         private void Player_Blinked(object sender, System.EventArgs e)
@@ -41,7 +46,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 return;
             }
 
-            score += Time.deltaTime * scoretoadd;
+            score += Time.deltaTime * scoretoadd * MapGenerator.ActualScrollSpeed;
             int roundedscore = Mathf.RoundToInt(score);
             scoretxt.text = roundedscore.ToString();
         }
@@ -59,7 +64,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
                 transform.localPosition = new Vector3(x, y, originalpos.z);
 
-
                 elapsed += Time.deltaTime;
 
                 yield return null;
@@ -67,7 +71,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             }
 
             transform.localPosition = originalpos;
-
         }
     }
 }

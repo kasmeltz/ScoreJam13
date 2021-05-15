@@ -48,5 +48,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e86c7fee858674347bde09f71672fffb, type: 2}
   WallTiles:
   - {fileID: 11400000, guid: 65de9b86e06db9345bf4e3cd18a844dd, type: 2}
-  WallWidth: 6
   ScrollSpeed: 2
+  SpeedIncreasePerSecond: 0.01
