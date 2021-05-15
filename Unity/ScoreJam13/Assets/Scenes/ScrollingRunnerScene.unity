@@ -558,7 +558,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1805612207, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
       propertyPath: sounds.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1805612207, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
       propertyPath: sounds.Array.data[1].clip
@@ -579,10 +579,10 @@ PrefabInstance:
     - target: {fileID: 1805612207, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
       propertyPath: sounds.Array.data[3].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 8f17444ce64080b48afd86ba50ffbce9, type: 3}
+      objectReference: {fileID: 8300000, guid: 07197fe624d22394688aeb23f500181d, type: 3}
     - target: {fileID: 1805612207, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
       propertyPath: sounds.Array.data[3].name
-      value: BlinkE
+      value: Lazer
       objectReference: {fileID: 0}
     - target: {fileID: 1805612207, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
       propertyPath: sounds.Array.data[1].pitch
@@ -828,7 +828,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8990906961078200366, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
       propertyPath: LevelScoresRequired.Array.data[3]
-      value: 3000
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8990906961078200366, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
       propertyPath: LevelScoresRequired.Array.data[4]
