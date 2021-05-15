@@ -12,7 +12,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         
         [SerializeField] Text scoretxt;
 
-        private IEnumerator coroutine;
+        
         protected Playermovement Player { get; set; }
 
         // Start is called before the first frame update

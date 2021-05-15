@@ -89,6 +89,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 .MovePosition(Vector2.zero);
 
             OnDied();
+            FindObjectOfType<AudioManager>().Playoneshot("Death");
         }
 
         protected void Update()
