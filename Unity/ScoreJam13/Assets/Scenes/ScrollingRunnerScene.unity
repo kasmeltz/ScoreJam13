@@ -751,7 +751,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Holder: {fileID: 1452181023}
   FloatingLaserPrefab: {fileID: 5246927729938665034, guid: 6b79cffbb4ac9234ea12e993d715d317, type: 3}
-  SpawnFrequency: 2
+  SpawnFrequency: 5
 --- !u!4 &2113911644
 Transform:
   m_ObjectHideFlags: 0
