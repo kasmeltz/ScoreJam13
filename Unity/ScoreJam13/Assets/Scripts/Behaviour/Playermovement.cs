@@ -68,6 +68,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         {
             IsDead = false;
             transform.position = Vector3.zero;
+            BlinkVector = new Vector3(0, 1, 0);
         }
 
         void Start()
@@ -207,30 +208,16 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
             var dir = movement.normalized;
 
-            Animator
-                .SetFloat("X", dir.x);
+            if (Mathf.Abs(dir.x) > 0.3f || Mathf.Abs(dir.y) > 0.3f)
+            { 
+                BlinkVector = dir * BlinkDistance;
 
-            Animator
-                .SetFloat("Y", dir.y);
+                Animator
+                    .SetFloat("X", dir.x);
 
-            if (Movement.x > 0)
-            {
-                BlinkVector = new Vector3(BlinkDistance, 0, 0);
+                Animator
+                    .SetFloat("Y", dir.y);
             }
-            if (Movement.x < 0)
-            {
-                BlinkVector = new Vector3(-BlinkDistance, 0, 0);
-            }
-            if (Movement.y > 0)
-            {
-                BlinkVector = new Vector3(0, BlinkDistance, 0);
-            }
-            if (Movement.y < 0)
-            {
-                BlinkVector = new Vector3(0, -BlinkDistance, 0);
-            }
-        }
-
-        
+        }        
     }
 }
