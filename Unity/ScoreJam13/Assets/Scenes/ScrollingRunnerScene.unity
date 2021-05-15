@@ -320,7 +320,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1805612207, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
       propertyPath: sounds.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1805612207, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
       propertyPath: sounds.Array.data[1].clip
@@ -333,7 +333,7 @@ PrefabInstance:
     - target: {fileID: 1805612207, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
       propertyPath: sounds.Array.data[2].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 37625838f8818d54a8c0dea51b756969, type: 3}
+      objectReference: {fileID: 8300000, guid: 8f17444ce64080b48afd86ba50ffbce9, type: 3}
     - target: {fileID: 1805612207, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
       propertyPath: sounds.Array.data[2].name
       value: BlinkS
