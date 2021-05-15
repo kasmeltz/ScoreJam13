@@ -168,6 +168,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
             Animator
                 .SetTrigger("Blink");
+
+            AudioManager.Playoneshot("BlinkS");
             
             IsBlinking = true;            
             
@@ -229,17 +231,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             }
         }
 
-        public void PlayDashsound(int start)
-        {
-            if (start > 0)
-            {
-                AudioManager.Playoneshot("BlinkS");
-            }
-            else if(start < 0)
-            {
-                AudioManager.Playoneshot("BlinkE");
-            }
-
-        }
+        
     }
 }
