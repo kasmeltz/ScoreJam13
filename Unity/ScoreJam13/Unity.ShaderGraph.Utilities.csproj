@@ -56,10 +56,10 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Library\PackageCache\com.unity.shadergraph@11.0.0\Editor\Utilities\EnumInfo.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@11.0.0\Editor\Utilities\GenerationAPIAttribute.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@11.0.0\Editor\Utilities\AssemblyInfo.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@11.0.0\Editor\Utilities\StringBuilderExtensions.cs" />
-    <Compile Include="Library\PackageCache\com.unity.shadergraph@11.0.0\Editor\Utilities\EnumInfo.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Library\PackageCache\com.unity.shadergraph@11.0.0\Editor\Utilities\Unity.ShaderGraph.Utilities.asmdef" />
