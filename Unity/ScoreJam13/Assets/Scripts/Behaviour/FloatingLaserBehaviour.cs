@@ -36,6 +36,11 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             DestroyComponent(this);
         }
 
+        public void Playlasersound()
+        {
+            FindObjectOfType<AudioManager>().Playoneshot("Lazer");
+        }
+
         #endregion
 
         #region Unity

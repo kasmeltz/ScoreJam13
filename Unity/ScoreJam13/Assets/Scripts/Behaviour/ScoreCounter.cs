@@ -27,9 +27,13 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         public void Reset()
         {
             Level = 0;
-            sidePlatforms.spawning = false;
-            laser.spawning = false;
-            laser.Rotating = false;
+            if (sidePlatforms != null)
+            {
+                sidePlatforms.spawning = false;
+
+                laser.spawning = false;
+                laser.Rotating = false;
+            }
         }
 
         // Start is called before the first frame update
@@ -44,8 +48,10 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             MapGenerator = FindObjectOfType<ScrollingMapGeneratorBehvaiour>();
             sidePlatforms = FindObjectOfType<SidePlatforms>();
             laser = FindObjectOfType<FloatingLaserSpawnerBehaviour>();
-
-            Reset();
+            if (FindObjectOfType<Mainmenu>() == null)
+            {
+                Reset();
+            }
         }
 
         private void Player_Blinked(object sender, System.EventArgs e)
