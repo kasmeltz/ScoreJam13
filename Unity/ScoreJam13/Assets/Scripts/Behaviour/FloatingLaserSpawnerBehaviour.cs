@@ -21,6 +21,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected ScoreCounter ScoreCounter { get; set; }
 
+        public bool spawning;
+            
         #endregion
 
         #region Protected Methods
@@ -32,17 +34,20 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected void SpawnFloatingLaser()
         {
-            var laser = Instantiate(FloatingLaserPrefab);
-            laser
-                .transform
-                .SetParent(Holder.transform);
+            if (spawning)
+            {
+                var laser = Instantiate(FloatingLaserPrefab);
+                laser
+                    .transform
+                    .SetParent(Holder.transform);
 
-            int xSquare = Random
-                .Range(-4, 5);
+                int xSquare = Random
+                    .Range(-4, 5);
 
-            float xPos = Player.transform.position.x;
+                float xPos = Player.transform.position.x;
 
-            laser.transform.position = new Vector3(xPos, 6f, 0);
+                laser.transform.position = new Vector3(xPos, 6f, 0);
+            }
             
         }
 

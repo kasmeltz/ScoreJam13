@@ -9,6 +9,17 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         public float score;
         public float scoretoadd;
         public float BlinkCost;
+
+        public enum levels{lvl1, lvl2, lvl3, lvl4}
+        levels levelstate;
+
+        public int lvlpoint1 = 1000; 
+        public int lvlpoint2 = 2000; 
+        public int lvlpoint3 = 3000; 
+        public int lvlpoint4 = 4000;
+
+        private SidePlatforms sidePlatforms;
+        private FloatingLaserSpawnerBehaviour laser;
         
         [SerializeField] Text scoretxt;
 
@@ -21,6 +32,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         // Start is called before the first frame update
         void Start()
         {
+            levelstate = levels.lvl1;
+
             Player = FindObjectOfType<Playermovement>();
 
             if (Player != null)
@@ -28,6 +41,9 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 Player.Blinked += Player_Blinked;
             }
             MapGenerator = FindObjectOfType<ScrollingMapGeneratorBehvaiour>();
+
+            sidePlatforms = FindObjectOfType<SidePlatforms>();
+            laser = FindObjectOfType<FloatingLaserSpawnerBehaviour>();
         }
 
         private void Player_Blinked(object sender, System.EventArgs e)
@@ -51,7 +67,46 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             score += Time.deltaTime * scoretoadd * MapGenerator.ActualScrollSpeed;
             int roundedscore = Mathf.RoundToInt(score);
             scoretxt.text = roundedscore.ToString();
+
+            if (score >= lvlpoint1)
+            {
+                levelstate = levels.lvl2;
+            }
+
+            if (levelstate == levels.lvl2)
+            {
+                sidePlatforms.spawning = true;
+            }
+
+            //
+
+            if (score >= lvlpoint2)
+            {
+                levelstate = levels.lvl3;
+            }
+
+            if (levelstate == levels.lvl3)
+            {
+                laser.spawning = true;
+            }
+
+            //
+
+            //if (score >= lvlpoint3)
+            //{
+            //    levelstate = levels.lvl4;
+            //}
+
+            //if (levelstate == levels.lvl4)
+            //{
+            //    sidePlatforms.spawning = true;
+            //}
+
+
         }
+
+        
+
         public IEnumerator Shake(float duration, float magnitude)
         {
             Vector3 originalpos = transform.localPosition;
