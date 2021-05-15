@@ -3,7 +3,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
     using System;
     using UnityEngine;
 
-    public class Playermovement : MonoBehaviour
+    public class Playermovement : BehaviourBase
     {
         public float BlinkDistance;
 
@@ -124,7 +124,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 .MovePosition(Vector2.zero);
 
             OnDied();
-            FindObjectOfType<AudioManager>().Playoneshot("Death");
+            
+            AudioManager.Playoneshot("Death");
         }
 
         protected void Update()
@@ -156,7 +157,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         {   
             if (ScoreCounter.score < ScoreCounter.BlinkCost)
             {
-                FindObjectOfType<AudioManager>().Playoneshot("FailedBlink");
+                AudioManager.Playoneshot("FailedBlink");
                 return;
             }            
 
@@ -165,10 +166,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
             Animator
                 .SetTrigger("Blink");
-
             
-            IsBlinking = true;
-            
+            IsBlinking = true;            
             
             OnBlinked();
         }
@@ -216,14 +215,13 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public void PlayDashsound(int start)
         {
-            if(start > 0)
+            if (start > 0)
             {
-                FindObjectOfType<AudioManager>().Playoneshot("BlinkS");
+                AudioManager.Playoneshot("BlinkS");
             }
             else if(start < 0)
             {
-                FindObjectOfType<AudioManager>().Playoneshot("BlinkE");
-
+                AudioManager.Playoneshot("BlinkE");
             }
 
         }
