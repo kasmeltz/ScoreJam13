@@ -121,12 +121,16 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
             foreach(Transform coin in CoinHolder.transform)
             {
-                coin.position += scrollVector;
-
-                if (coin.position.y < -CameraEdge.y)
+                if(!(coin.gameObject.tag == "platform"))
                 {
-                    DestroyComponent(coin);
+                    coin.position += scrollVector;
+
+                    if (coin.position.y < -CameraEdge.y)
+                    {
+                        DestroyComponent(coin);
+                    }
                 }
+
             }
 
             ScrollY += toScroll;
