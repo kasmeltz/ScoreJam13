@@ -87,6 +87,34 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             }
         }
 
+        protected void UpdateChildren(Vector3 scrollVector)
+        {
+            foreach (Transform child in CoinHolder.transform)
+            {
+                bool shouldScroll = false;
+                if (child.gameObject.tag == "Coin")
+                {
+                    shouldScroll = true;
+                }
+
+                if (shouldScroll)
+                {
+                    child.position += scrollVector;
+                }
+
+                bool shouldBeRemoved = false;
+                if (child.gameObject.tag == "Coin")
+                {
+                    shouldBeRemoved = true;
+                }
+
+                if (shouldBeRemoved && child.position.y < -CameraEdge.y)
+                {
+                    DestroyComponent(child);
+                }
+            }
+        }        
+
         protected void SpawnCoin()
         {
             var coin = Instantiate(CoinPrefab);
@@ -119,19 +147,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             Vector3 scrollVector = new Vector3(0, -toScroll, 0);
             Floor.transform.position += scrollVector;
 
-            foreach(Transform coin in CoinHolder.transform)
-            {
-                if(!(coin.gameObject.tag == "platform"))
-                {
-                    coin.position += scrollVector;
-
-                    if (coin.position.y < -CameraEdge.y)
-                    {
-                        DestroyComponent(coin);
-                    }
-                }
-
-            }
+            UpdateChildren(scrollVector);
 
             ScrollY += toScroll;
 
