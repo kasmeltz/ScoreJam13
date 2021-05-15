@@ -28,6 +28,11 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         #region Event Handlers
 
+        public void SetPlayerName(string name)
+        {
+            Playermovement.PlayerName = name;
+        }
+
         private void Player_Died(object sender, System.EventArgs e)
         {
             gameObject
@@ -66,7 +71,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             HighScore highScore = new HighScore
             {
                 fileTime = DateTime.UtcNow.ToFileTime(),
-                playerName = "Kevin",
+                playerName = Playermovement.PlayerName,
                 score = Mathf.RoundToInt(ScoreCounter.score)
             };
 

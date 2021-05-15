@@ -31,6 +31,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected bool IsDead { get; set; }
 
+        public static string PlayerName { get; set; }
+
         #region Events
 
         public event EventHandler Blinked;
