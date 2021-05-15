@@ -147,7 +147,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             SetVariables();
 
             if (Input
-                .GetKeyDown(KeyCode.Space))
+                .GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1"))
             {
                 Blink();
             }
