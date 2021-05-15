@@ -28,6 +28,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected ScoreCounter ScoreCounter { get; set; }
 
+        protected bool IsDead { get; set; }
+
         #region Events
 
         public event EventHandler Blinked;
@@ -48,6 +50,12 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         #endregion
 
+        public void Reset()
+        {
+            IsDead = false;
+            transform.position = Vector3.zero;
+        }
+
         void Start()
         {
             ScoreCounter = FindObjectOfType<ScoreCounter>();
@@ -55,6 +63,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             SpriteRenderer = GetComponent<SpriteRenderer>();
 
             Rigidbody = GetComponent<Rigidbody2D>();
+
+            Reset();
         }
 
         protected Vector3 GetMoveHere(Vector3 pos)
@@ -87,6 +97,13 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public void Die()
         {
+            if (IsDead)
+            {
+                return;
+            }
+            
+            IsDead = true;
+
             transform.position = Vector2.zero;
 
             Rigidbody

@@ -45,9 +45,12 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         public void StartDaGame()
         {
             ScoreCounter.score = 0;
-            ScrollingMapGenerator.Reset();
+            ScrollingMapGenerator
+                .Reset();
+            
             var player = FindObjectOfType<Playermovement>();
-            player.transform.position = Vector3.zero;
+            player
+                .Reset();
 
             gameObject
                 .SetActive(false);
