@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 namespace KasJam.ScoreJam13.Unity.Behaviours {
     public class Mainmenu : MonoBehaviour
     {
@@ -12,6 +12,14 @@ namespace KasJam.ScoreJam13.Unity.Behaviours {
             FindObjectOfType<ScrollingMapGeneratorBehvaiour>().Reset();
         }
 
+        public void Loadscene(int scene)
+        {
+            SceneManager.LoadScene(scene);
+        }
 
+        public void Quit()
+        {
+            Application.Quit();
+        }
     }
 }
