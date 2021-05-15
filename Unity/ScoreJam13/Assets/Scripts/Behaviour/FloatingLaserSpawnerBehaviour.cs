@@ -5,11 +5,15 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
     [AddComponentMenu("AScoreJam13/FloatingLaserSpawner")]
     public class FloatingLaserSpawnerBehaviour : BehaviourBase
     {
+        
+
         #region Members
 
         public GameObject Holder;
 
         public GameObject FloatingLaserPrefab;
+
+        Playermovement Player;
 
         public float SpawnFrequency;
 
@@ -23,6 +27,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         protected void Reset()
         {
             SpawnCounter = SpawnFrequency;
+            Player = FindObjectOfType<Playermovement>();
         }
 
         protected void SpawnFloatingLaser()
@@ -35,9 +40,10 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             int xSquare = Random
                 .Range(-4, 5);
 
-            float xPos = xSquare * 1.28f;
+            float xPos = Player.transform.position.x;
 
             laser.transform.position = new Vector3(xPos, 6f, 0);
+            
         }
 
         #endregion
