@@ -9,6 +9,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public LaserBehaviour LaserPrefab;
 
+        protected Playermovement Player { get; set; }
+
         public bool Rotating { get; set; }
 
         #endregion
@@ -19,13 +21,43 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         {
             var laser = Instantiate(LaserPrefab);
 
+            laser.transform.SetParent(transform);
             laser.transform.position = Vector3.zero;
-            laser.transform.SetParent(transform.parent);
+            laser.transform.eulerAngles = transform.eulerAngles;
+        }
+
+        public void StopRotating()
+        {
+            Rotating = false;
         }
 
         public void SelfDestruct()
         {
             DestroyComponent(this);
+        }
+
+        #endregion
+
+        #region Unity
+
+        protected override void Awake()
+        {
+            base
+                .Awake();
+
+            Player = FindObjectOfType<Playermovement>();
+            transform.eulerAngles = new Vector3(0, 0, 0);            
+        }
+
+        protected void Update()
+        {
+            if (Rotating)
+            {
+                float angle = Vector2
+                    .Angle(Vector2.right, Player.transform.position - transform.position) * -1.0f;
+
+                transform.eulerAngles = new Vector3(0, 0, angle + 90);
+            }
         }
 
         #endregion

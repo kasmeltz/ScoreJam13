@@ -4,9 +4,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
     [AddComponentMenu("AScoreJam13/FloatingLaserSpawner")]
     public class FloatingLaserSpawnerBehaviour : BehaviourBase
-    {
-        
-
+    {        
         #region Members
 
         public GameObject Holder;
