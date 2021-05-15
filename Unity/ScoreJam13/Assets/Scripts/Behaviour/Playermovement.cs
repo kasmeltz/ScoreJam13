@@ -157,7 +157,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             }
         }
 
-        protected void OnCollisionEnter2D(Collision2D collision)
+        protected void OnCollisionStay2D(Collision2D collision)
         {
             if(!invinceble)
             {
