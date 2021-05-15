@@ -23,8 +23,10 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         {
             Player = FindObjectOfType<Playermovement>();
 
-            Player.Blinked += Player_Blinked;
-
+            if (Player != null)
+            {
+                Player.Blinked += Player_Blinked;
+            }
             MapGenerator = FindObjectOfType<ScrollingMapGeneratorBehvaiour>();
         }
 
