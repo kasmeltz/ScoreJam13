@@ -133,11 +133,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             var pos = transform.position + blink;
             transform.position = GetMoveHere(pos);
 
-            if (transform.position.x != pos.x || transform.position.y != pos.y)
-            {
-                OnBlinked();
-            }
-
+            
+            OnBlinked();
             transform.position += blink;
 
             MakeInvincible(true);
