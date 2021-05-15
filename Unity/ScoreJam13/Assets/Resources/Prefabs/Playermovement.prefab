@@ -84,7 +84,7 @@ SpriteRenderer:
   m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &-6422463560912469631
@@ -101,8 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BlinkDistance: 1
   Strafespeed: 3
-  invincebletime: 0.25
-  blink: {x: 0, y: 0, z: 0}
+  CoinScore: 500
 --- !u!50 &66342484
 Rigidbody2D:
   serializedVersion: 4

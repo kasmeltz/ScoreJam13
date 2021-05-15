@@ -3,11 +3,13 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
     using System;
     using UnityEngine;
 
-    public class Playermovement : MonoBehaviour
+    public class Playermovement : BehaviourBase
     {
         public float BlinkDistance;
 
         public float Strafespeed;
+
+        public float CoinScore;
 
         protected bool IsBlinking { get; set; }
 
@@ -124,7 +126,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 .MovePosition(Vector2.zero);
 
             OnDied();
-            FindObjectOfType<AudioManager>().Playoneshot("Death");
+            
+            AudioManager.Playoneshot("Death");
         }
 
         protected void Update()
@@ -156,25 +159,35 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         {   
             if (ScoreCounter.score < ScoreCounter.BlinkCost)
             {
-                FindObjectOfType<AudioManager>().Playoneshot("FailedBlink");
+                AudioManager.Playoneshot("FailedBlink");
                 return;
             }            
 
             var pos = transform.position + BlinkVector;
             transform.position = GetMoveHere(pos);
 
-            FindObjectOfType<AudioManager>().Playoneshot("BlinkS");
-
             Animator
                 .SetTrigger("Blink");
-
             
-            IsBlinking = true;
-            
+            IsBlinking = true;            
             
             OnBlinked();
         }
-        
+
+        protected void OnTriggerEnter2D(Collider2D collision)
+        {
+            var coin = collision
+                .GetComponent<CoinBehaviour>();    
+
+            if (coin != null)
+            {
+                ScoreCounter.score += CoinScore;
+
+                DestroyComponent(coin);
+            }
+
+        }
+
         protected void OnCollisionStay2D(Collision2D collision)
         {
             if(!IsBlinking)
@@ -216,6 +229,17 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             }
         }
 
-        
+        public void PlayDashsound(int start)
+        {
+            if (start > 0)
+            {
+                AudioManager.Playoneshot("BlinkS");
+            }
+            else if(start < 0)
+            {
+                AudioManager.Playoneshot("BlinkE");
+            }
+
+        }
     }
 }

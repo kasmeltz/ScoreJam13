@@ -18,18 +18,26 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public float SpeedIncreasePerSecond;
 
+        public CoinBehaviour CoinPrefab;
+
+        public GameObject CoinHolder;
+
         protected float ScrollY { get; set; }
 
         protected Vector2 CameraEdge { get; set; }
 
         public float ActualScrollSpeed { get; protected set; }
-      
+
+        protected Playermovement Player { get; set; }
+        
         #endregion
 
         #region Public Methods
 
         public void Reset()
         {
+            Player = FindObjectOfType<Playermovement>();
+
             ActualScrollSpeed = ScrollSpeed;
                 
             Vector2 topRightCorner = new Vector2(1, 1);
@@ -37,6 +45,11 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             CameraEdge = Camera
                 .main
                 .ViewportToWorldPoint(topRightCorner);
+
+            foreach (Transform coin in CoinHolder.transform)
+            {
+                DestroyComponent(coin);
+            }
 
             Floor
                 .ClearAllTiles();
@@ -74,11 +87,47 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             }
         }
 
+        protected void SpawnCoin()
+        {
+            var coin = Instantiate(CoinPrefab);
+
+            var sr = Player.GetComponent<SpriteRenderer>();            
+            var w = (sr.sprite.rect.width * Player.transform.localScale.x) / 100;
+            var h = (sr.sprite.rect.height * Player.transform.localScale.y) / 100;
+
+            float minX = -CameraEdge.x - w;
+            float maxX = CameraEdge.x + w;
+            float minY = -CameraEdge.y - h;
+            float maxY = CameraEdge.y + h;
+
+            float x = Random.Range(minX, maxX);
+            float y = Random.Range(minY, maxY);
+
+            coin.transform.SetParent(CoinHolder.transform);
+            coin.transform.position = new Vector3(x, y, 0);
+        }
+
         protected void ScrollTiles()
         {
+            if (Random.value >= 0.998)
+            {
+                SpawnCoin();
+            }
+
             var toScroll = Time.deltaTime * ActualScrollSpeed;
 
-            Floor.transform.position += new Vector3(0, -toScroll, 0);
+            Vector3 scrollVector = new Vector3(0, -toScroll, 0);
+            Floor.transform.position += scrollVector;
+
+            foreach(Transform coin in CoinHolder.transform)
+            {
+                coin.position += scrollVector;
+
+                if (coin.position.y < -CameraEdge.y)
+                {
+                    DestroyComponent(coin);
+                }
+            }
 
             ScrollY += toScroll;
 
