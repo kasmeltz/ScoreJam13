@@ -43,7 +43,9 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                     .transform
                     .SetParent(Holder.transform);
 
-                var fl = laser.GetComponentInChildren<FloatingLaserBehaviour>();
+                var fl = laser
+                    .GetComponentInChildren<FloatingLaserBehaviour>();
+
                 fl.Rotating = Rotating;
 
                 float xPos = Player.transform.position.x;
