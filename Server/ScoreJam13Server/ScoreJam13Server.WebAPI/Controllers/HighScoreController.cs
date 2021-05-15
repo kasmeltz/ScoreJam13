@@ -69,6 +69,7 @@
                     .Add(highScore);
 
                 HighScores = HighScores
+                    .OrderByDescending(o => o.Score)
                     .Take(100)
                     .ToList();
             }
