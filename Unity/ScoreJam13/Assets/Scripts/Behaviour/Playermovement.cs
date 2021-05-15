@@ -5,18 +5,15 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
     public class Playermovement : MonoBehaviour
     {
-        public static bool IsPlaying { get; set; }
-
         public float BlinkDistance;
+
         public float Strafespeed;
 
-        public float invincebletime;
-        
-        protected float invincebleCountdown { get; set; }
+        protected bool IsBlinking { get; set; }
 
-        protected bool invinceble { get; set; }
+        protected Vector3 BlinkVector { get; set; }
 
-        public Vector3 blink;
+        public static bool IsPlaying { get; set; }
 
         protected Vector3 Movement { get; set; }
 
@@ -27,6 +24,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         protected Rigidbody2D Rigidbody { get; set; }
 
         protected ScoreCounter ScoreCounter { get; set; }
+
+        protected Animator Animator { get; set; }
 
         protected bool IsDead { get; set; }
 
@@ -50,6 +49,19 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         #endregion
 
+        #region Animation Callbacks
+
+        public void BlinkStarted()
+        {
+        }
+
+        public void BlinkEnded()
+        {
+            IsBlinking = false;
+        }
+
+        #endregion
+
         public void Reset()
         {
             IsDead = false;
@@ -63,6 +75,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             SpriteRenderer = GetComponent<SpriteRenderer>();
 
             Rigidbody = GetComponent<Rigidbody2D>();
+
+            Animator = GetComponent<Animator>();
 
             Reset();
         }
@@ -120,18 +134,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 return;
             }
 
-            if (invinceble)
-            {
-                if (invincebleCountdown > 0)
-                {
-                    invincebleCountdown -= Time.deltaTime;
-                    if (invincebleCountdown <= 0)
-                    {
-                        MakeInvincible(false);
-                    }
-                }
-            }
-
             Vector2 topRightCorner = new Vector2(1, 1);
 
             CameraEdge = Camera
@@ -155,34 +157,22 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             if (ScoreCounter.score < ScoreCounter.BlinkCost)
             {
                 return;
-            }
+            }            
 
-            var pos = transform.position + blink;
+            var pos = transform.position + BlinkVector;
             transform.position = GetMoveHere(pos);
-            
+
+            Animator
+                .SetTrigger("Blink");
+
+            IsBlinking = true;
+
             OnBlinked();
-            transform.position += blink;
-
-            MakeInvincible(true);
         }
-
-        protected void MakeInvincible(bool isInvincible)
-        {
-            if (isInvincible)
-            {
-                invinceble = true;
-                invincebleCountdown = invincebletime;
-            }
-            else
-            {
-                invinceble = false;
-                invincebleCountdown = 0;
-            }
-        }
-
+        
         protected void OnCollisionStay2D(Collision2D collision)
         {
-            if(!invinceble)
+            if(!IsBlinking)
             {
                 Die();
             }            
@@ -195,21 +185,29 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             movement.y = Input.GetAxisRaw("Vertical");
             Movement = movement;
 
+            var dir = movement.normalized;
+
+            Animator
+                .SetFloat("X", dir.x);
+
+            Animator
+                .SetFloat("Y", dir.y);
+
             if (Movement.x > 0)
             {
-                blink = new Vector3(BlinkDistance, 0, 0);
+                BlinkVector = new Vector3(BlinkDistance, 0, 0);
             }
             if (Movement.x < 0)
             {
-                blink = new Vector3(-BlinkDistance, 0, 0);
+                BlinkVector = new Vector3(-BlinkDistance, 0, 0);
             }
             if (Movement.y > 0)
             {
-                blink = new Vector3(0, BlinkDistance, 0);
+                BlinkVector = new Vector3(0, BlinkDistance, 0);
             }
             if (Movement.y < 0)
             {
-                blink = new Vector3(0, -BlinkDistance, 0);
+                BlinkVector = new Vector3(0, -BlinkDistance, 0);
             }
         }
     }
