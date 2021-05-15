@@ -14,6 +14,8 @@ public class SidePlatforms : MonoBehaviour
 
     public GameObject holder;
 
+    public bool spawning = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,23 +27,26 @@ public class SidePlatforms : MonoBehaviour
 
     void Spawn()
     {
-        int randomplatform = UnityEngine.Random.Range(0, platforms.Length);
-        GameObject platform = Instantiate(platforms[randomplatform]);
+        if (spawning)
+        {
+            int randomplatform = UnityEngine.Random.Range(0, platforms.Length);
+            GameObject platform = Instantiate(platforms[randomplatform]);
 
-        float starty = UnityEngine.Random.Range(startpoint.y - 4f, startpoint.y + 4f);
-        platform.transform.position = new Vector3(startpoint.x, starty, startpoint.z);
+            float starty = UnityEngine.Random.Range(startpoint.y - 4f, startpoint.y + 4f);
+            platform.transform.position = new Vector3(startpoint.x, starty, startpoint.z);
 
-        //float scale = UnityEngine.Random.Range(0.5f, 1f);
-        //platform.transform.localScale = new Vector2(scale, scale);
+            //float scale = UnityEngine.Random.Range(0.5f, 1f);
+            //platform.transform.localScale = new Vector2(scale, scale);
 
-        float alpha = UnityEngine.Random.Range(0.5f, 1f);
-        platform.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, alpha);
+            float alpha = UnityEngine.Random.Range(0.5f, 1f);
+            platform.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, alpha);
 
-        float speed = UnityEngine.Random.Range(0.7f, 3f);
+            float speed = UnityEngine.Random.Range(0.7f, 3f);
 
-        platform.transform.SetParent(holder.transform);
+            platform.transform.SetParent(holder.transform);
 
-        platform.GetComponent<Platform>().startFloating(speed, endpoint.transform.position.x);
+            platform.GetComponent<Platform>().startFloating(speed, endpoint.transform.position.x);
+        }
 
 
     }
