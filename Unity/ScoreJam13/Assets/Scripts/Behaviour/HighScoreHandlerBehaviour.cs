@@ -11,6 +11,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
     public class HighScoreHandlerBehaviour : BehaviourBase
     {
         protected static string WebApiURL = "https://scorejam13.azurewebsites.net/highscore";
+        //protected static string WebApiURL = "http://localhost:63193/highscore";
+
 
         public HighScoreList HighScores { get; protected set; }
 
