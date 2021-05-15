@@ -9,6 +9,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public float Strafespeed;
 
+        public float CoinScore;
+
         protected bool IsBlinking { get; set; }
 
         protected Vector3 BlinkVector { get; set; }
@@ -171,7 +173,21 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             
             OnBlinked();
         }
-        
+
+        protected void OnTriggerEnter2D(Collider2D collision)
+        {
+            var coin = collision
+                .GetComponent<CoinBehaviour>();    
+
+            if (coin != null)
+            {
+                ScoreCounter.score += CoinScore;
+
+                DestroyComponent(coin);
+            }
+
+        }
+
         protected void OnCollisionStay2D(Collision2D collision)
         {
             if(!IsBlinking)
