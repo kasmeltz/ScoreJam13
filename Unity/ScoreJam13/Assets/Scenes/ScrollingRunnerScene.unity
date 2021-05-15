@@ -608,6 +608,18 @@ PrefabInstance:
       propertyPath: sounds.Array.data[3].volume
       value: 0.945
       objectReference: {fileID: 0}
+    - target: {fileID: 42317843431972889, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
+      propertyPath: m_Color.b
+      value: 0.20754719
+      objectReference: {fileID: 0}
+    - target: {fileID: 42317843431972889, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
+      propertyPath: m_Color.g
+      value: 0.20754719
+      objectReference: {fileID: 0}
+    - target: {fileID: 42317843431972889, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
+      propertyPath: m_Color.r
+      value: 0.20754719
+      objectReference: {fileID: 0}
     - target: {fileID: 3605405913648414206, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
@@ -636,6 +648,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 720
       objectReference: {fileID: 0}
+    - target: {fileID: 6579702237584890497, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6804747811510080737, guid: dadcb23220481404fb654be6c38c621f, type: 3}
     - target: {fileID: 6579702237584890498, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
       propertyPath: m_Name
       value: StartButton
@@ -757,6 +773,18 @@ PrefabInstance:
     - target: {fileID: 6579702239224553589, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579702239322047193, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579702239322047193, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579702239322047193, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6579702239322047193, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
       propertyPath: m_FontData.m_FontSize
@@ -1095,6 +1123,7 @@ MonoBehaviour:
   Holder: {fileID: 1452181023}
   FloatingLaserPrefab: {fileID: 5246927729938665034, guid: 6b79cffbb4ac9234ea12e993d715d317, type: 3}
   SpawnFrequency: 5
+  spawning: 0
 --- !u!4 &2113911644
 Transform:
   m_ObjectHideFlags: 0
