@@ -17,8 +17,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         {
             var laser = Instantiate(LaserPrefab);
 
-            laser.transform.SetParent(transform.parent);
             laser.transform.position = Vector3.zero;
+            laser.transform.SetParent(transform.parent);
         }
 
         public void SelfDestruct()
