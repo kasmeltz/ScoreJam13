@@ -156,6 +156,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         {   
             if (ScoreCounter.score < ScoreCounter.BlinkCost)
             {
+                FindObjectOfType<AudioManager>().Playoneshot("FailedBlink");
                 return;
             }            
 
@@ -165,8 +166,10 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             Animator
                 .SetTrigger("Blink");
 
+            
             IsBlinking = true;
-
+            
+            
             OnBlinked();
         }
         
@@ -209,6 +212,20 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             {
                 BlinkVector = new Vector3(0, -BlinkDistance, 0);
             }
+        }
+
+        public void PlayDashsound(int start)
+        {
+            if(start > 0)
+            {
+                FindObjectOfType<AudioManager>().Playoneshot("BlinkS");
+            }
+            else if(start < 0)
+            {
+                FindObjectOfType<AudioManager>().Playoneshot("BlinkE");
+
+            }
+
         }
     }
 }
