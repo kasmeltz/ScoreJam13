@@ -4,7 +4,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
     using UnityEngine;
     using UnityEngine.UI;
 
-    public class ScoreCounter : MonoBehaviour
+    public class ScoreCounter : BehaviourBase
     {
         public float score;
         public float scoretoadd;
@@ -84,7 +84,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                     Level = i;
                 }
             }
-
+           
             if (Level >= 1)
             {
                 sidePlatforms.spawning = true;
