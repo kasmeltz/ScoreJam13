@@ -21,7 +21,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected ScoreCounter ScoreCounter { get; set; }
 
-        public bool spawning;
+        public bool spawning = false;
             
         #endregion
 

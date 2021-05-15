@@ -77,6 +77,10 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             {
                 sidePlatforms.spawning = true;
             }
+            else
+            {
+                sidePlatforms.spawning = false;
+            }
 
             //
 
@@ -88,6 +92,10 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             if (levelstate == levels.lvl3)
             {
                 laser.spawning = true;
+            }
+            else
+            {
+                laser.spawning = false;
             }
 
             //
