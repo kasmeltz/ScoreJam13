@@ -36,6 +36,10 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public void Reset()
         {
+            var score = FindObjectOfType<ScoreCounter>();
+            score
+                .Reset();
+
             Player = FindObjectOfType<Playermovement>();
 
             ActualScrollSpeed = ScrollSpeed;
@@ -92,7 +96,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             foreach (Transform child in CoinHolder.transform)
             {
                 bool shouldScroll = false;
-                if (child.gameObject.tag == "Coin")
+                if (child.gameObject.CompareTag("Coin"))
                 {
                     shouldScroll = true;
                 }
@@ -103,7 +107,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 }
 
                 bool shouldBeRemoved = false;
-                if (child.gameObject.tag == "Coin")
+                if (child.gameObject.CompareTag("Coin"))
                 {
                     shouldBeRemoved = true;
                 }

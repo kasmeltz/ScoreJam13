@@ -1,8 +1,8 @@
 namespace KasJam.ScoreJam13.Unity.Behaviours
 {
+    using System.Collections;
     using UnityEngine;
     using UnityEngine.UI;
-    using System.Collections;
 
     public class ScoreCounter : MonoBehaviour
     {
@@ -10,13 +10,9 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         public float scoretoadd;
         public float BlinkCost;
 
-        public enum levels{lvl1, lvl2, lvl3, lvl4}
-        levels levelstate;
+        public float[] LevelScoresRequired;
 
-        public int lvlpoint1 = 1000; 
-        public int lvlpoint2 = 2000; 
-        public int lvlpoint3 = 3000; 
-        public int lvlpoint4 = 4000;
+        public int Level { get; protected set; }
 
         private SidePlatforms sidePlatforms;
         private FloatingLaserSpawnerBehaviour laser;
@@ -28,22 +24,28 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected ScrollingMapGeneratorBehvaiour MapGenerator { get; set; }
 
+        public void Reset()
+        {
+            Level = 0;
+            sidePlatforms.spawning = false;
+            laser.spawning = false;
+            laser.Rotating = false;
+        }
 
         // Start is called before the first frame update
         void Start()
         {
-            levelstate = levels.lvl1;
-
             Player = FindObjectOfType<Playermovement>();
-
             if (Player != null)
             {
                 Player.Blinked += Player_Blinked;
             }
-            MapGenerator = FindObjectOfType<ScrollingMapGeneratorBehvaiour>();
 
+            MapGenerator = FindObjectOfType<ScrollingMapGeneratorBehvaiour>();
             sidePlatforms = FindObjectOfType<SidePlatforms>();
             laser = FindObjectOfType<FloatingLaserSpawnerBehaviour>();
+
+            Reset();
         }
 
         private void Player_Blinked(object sender, System.EventArgs e)
@@ -68,12 +70,16 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             int roundedscore = Mathf.RoundToInt(score);
             scoretxt.text = roundedscore.ToString();
 
-            if (score >= lvlpoint1)
+            Level = 0;
+            for (int i = 0; i < LevelScoresRequired.Length; i++)
             {
-                levelstate = levels.lvl2;
+                if (score >= LevelScoresRequired[i])
+                {
+                    Level = i;
+                }
             }
 
-            if (levelstate == levels.lvl2)
+            if (Level >= 1)
             {
                 sidePlatforms.spawning = true;
             }
@@ -82,14 +88,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 sidePlatforms.spawning = false;
             }
 
-            //
-
-            if (score >= lvlpoint2)
-            {
-                levelstate = levels.lvl3;
-            }
-
-            if (levelstate == levels.lvl3)
+            if (Level >= 2)
             {
                 laser.spawning = true;
             }
@@ -98,21 +97,15 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 laser.spawning = false;
             }
 
-            //
-
-            //if (score >= lvlpoint3)
-            //{
-            //    levelstate = levels.lvl4;
-            //}
-
-            //if (levelstate == levels.lvl4)
-            //{
-            //    sidePlatforms.spawning = true;
-            //}
-
-
+            if (Level >= 3)
+            {
+                laser.Rotating = true;
+            }
+            else
+            {
+                laser.Rotating = false;
+            }
         }
-
         
 
         public IEnumerator Shake(float duration, float magnitude)

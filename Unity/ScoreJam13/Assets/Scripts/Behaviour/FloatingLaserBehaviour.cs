@@ -9,6 +9,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public LaserBehaviour LaserPrefab;
 
+        public bool Rotating { get; set; }
+
         #endregion
 
         #region Animation Callbacks

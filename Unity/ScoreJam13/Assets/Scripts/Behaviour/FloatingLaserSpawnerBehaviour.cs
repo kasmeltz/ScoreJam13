@@ -22,7 +22,9 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         protected ScoreCounter ScoreCounter { get; set; }
 
         public bool spawning = false;
-            
+
+        public bool Rotating = false;
+
         #endregion
 
         #region Protected Methods
@@ -41,8 +43,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                     .transform
                     .SetParent(Holder.transform);
 
-                int xSquare = Random
-                    .Range(-4, 5);
+                var fl = laser.GetComponent<FloatingLaserBehaviour>();
+                fl.Rotating = Rotating;
 
                 float xPos = Player.transform.position.x;
 

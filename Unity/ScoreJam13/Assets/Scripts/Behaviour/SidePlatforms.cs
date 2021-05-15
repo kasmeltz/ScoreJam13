@@ -24,7 +24,6 @@ public class SidePlatforms : MonoBehaviour
         Invoke("AttemptSpawn", spawntime);
     }
 
-
     void Spawn()
     {
         if (spawning)
@@ -47,8 +46,6 @@ public class SidePlatforms : MonoBehaviour
 
             platform.GetComponent<Platform>().startFloating(speed, endpoint.transform.position.x);
         }
-
-
     }
 
     void AttemptSpawn()
@@ -56,7 +53,5 @@ public class SidePlatforms : MonoBehaviour
         Spawn();
 
         Invoke("AttemptSpawn", spawntime);
-
     }
-
 }
