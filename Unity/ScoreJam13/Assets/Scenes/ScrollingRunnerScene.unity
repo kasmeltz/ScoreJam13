@@ -306,6 +306,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8c02d96b2545f14792c5c68b3232d50, type: 3}
+--- !u!114 &768056450 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8321519118466283107, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
+  m_PrefabInstance: {fileID: 1105757217}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1041307795
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,6 +405,18 @@ PrefabInstance:
     - target: {fileID: 6579702238558819048, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -118
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579702239422425361, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
+      propertyPath: finalscore
+      value: 
+      objectReference: {fileID: 768056450}
+    - target: {fileID: 8321519118466283107, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
+      propertyPath: m_Text
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8321519118466283107, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8990906961078200355, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
       propertyPath: m_Name
