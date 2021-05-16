@@ -140,7 +140,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected void ScrollTiles()
         {
-            int tileLevel = ScoreCounter.Level;
+            int tileLevel = ScoreCounter.Level / 2;
             if (tileLevel >= FloorTiles.Length)
             {
                 tileLevel = FloorTiles.Length - 1;
