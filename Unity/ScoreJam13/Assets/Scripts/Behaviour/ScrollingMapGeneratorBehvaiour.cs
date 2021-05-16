@@ -133,7 +133,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             float maxY = CameraEdge.y + h;
 
             float x = Random.Range(minX, maxX);
-            float y = Random.Range(minY, maxY);
+            float y = Random.Range(maxY, maxY);
 
 
 
