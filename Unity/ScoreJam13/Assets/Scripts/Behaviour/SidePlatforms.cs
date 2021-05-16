@@ -21,7 +21,7 @@ public class SidePlatforms : MonoBehaviour
     {
         startpoint = transform.position;
 
-        Invoke("AttemptSpawn", spawntime);
+        Invoke(nameof(AttemptSpawn), spawntime);
     }
 
     void Spawn()
@@ -52,6 +52,6 @@ public class SidePlatforms : MonoBehaviour
     {
         Spawn();
 
-        Invoke("AttemptSpawn", spawntime);
+        Invoke(nameof(AttemptSpawn), spawntime);
     }
 }

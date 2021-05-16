@@ -4,6 +4,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Text;
     using UnityEngine;
@@ -21,6 +22,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         public Text CheatersText;
 
         public Text finalscore;
+
+        protected float PersonalBest { get; set; }
 
         protected HighScoreHandlerBehaviour HighScoreHandler { get; set; }
 
@@ -45,8 +48,14 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
             Playermovement.IsPlaying = false;
 
-            finalscore.GetComponent<Text>().text = (Mathf.RoundToInt(ScoreCounter.score)).ToString();
+            finalscore.text = (Mathf.RoundToInt(ScoreCounter.score)).ToString();
 
+            if (ScoreCounter.score > PersonalBest)
+            {
+                SaveScore(ScoreCounter.score);
+                PersonalBest = ScoreCounter.score;
+            }
+            
             StartCoroutine(SendHighScore());
         }
 
@@ -71,6 +80,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         }
 
         #endregion
+
         #region Protected Methods
 
         protected IEnumerator SendHighScore()
@@ -142,6 +152,35 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             SetHighScoreList(cheaters, CheatersText);
         }
 
+        protected void SaveScore(float score)
+        {
+            var path = Path
+                .Combine(Application.persistentDataPath, "pb.txt");
+
+            File
+                .WriteAllText(path, $"{score}");
+        }
+
+        protected float LoadScore()
+        {
+            var path = Path
+                .Combine(Application.persistentDataPath, "pb.txt");
+
+            if (File
+                .Exists(path))
+            {
+                string s = File
+                    .ReadAllText(path);
+
+                float
+                    .TryParse(s, out float f);
+
+                return f;
+            }
+
+            return 0;
+        }
+
         #endregion
 
         #region Unity
@@ -161,6 +200,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         {
             var player = FindObjectOfType<Playermovement>();
             player.Died += Player_Died;
+
+            PersonalBest = LoadScore();
         }
       
         #endregion
