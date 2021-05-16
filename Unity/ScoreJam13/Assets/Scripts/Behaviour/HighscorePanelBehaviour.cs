@@ -163,6 +163,12 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
             File
                 .WriteAllText(path, $"{score}");
+
+            PlayerPrefs
+                .SetString("forceSave", string.Empty);
+
+            PlayerPrefs
+                .Save();
         }
 
         protected float LoadScore()
