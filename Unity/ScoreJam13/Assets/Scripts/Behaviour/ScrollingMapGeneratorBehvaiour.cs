@@ -29,18 +29,17 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         public float ActualScrollSpeed { get; protected set; }
 
         protected Playermovement Player { get; set; }
-        
+
+        protected ScoreCounter ScoreCounter { get; set; }
+
         #endregion
 
         #region Public Methods
 
         public void Reset()
         {
-            var score = FindObjectOfType<ScoreCounter>();
-            score
+            ScoreCounter
                 .Reset();
-
-            Player = FindObjectOfType<Playermovement>();
 
             ActualScrollSpeed = ScrollSpeed;
                 
@@ -134,16 +133,19 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
             float x = Random.Range(minX, maxX);
             float y = Random.Range(maxY, maxY);
-
             
             coin.transform.SetParent(CoinHolder.transform);
             coin.transform.position = new Vector3(x, y, 0);
-
-
         }
 
         protected void ScrollTiles()
         {
+            int tileLevel = ScoreCounter.Level;
+            if (tileLevel >= FloorTiles.Length)
+            {
+                tileLevel = FloorTiles.Length - 1;
+            }
+
             if (Random.value >= 0.998)
             {
                 SpawnCoin();
@@ -168,10 +170,10 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 // add new row of cells
                 for (int x = 0; x < bounds.size.x; x++)
                 {
-                    var tile = FloorTiles[0];
+                    var tile = FloorTiles[tileLevel];
                     if (Random.value >= 0.9)
                     {
-                        tile = WallTiles[0];
+                        tile = WallTiles[tileLevel];
                     }
 
                     tiles[x] = tile;
@@ -201,6 +203,15 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         #region Unity
 
+        protected override void Awake()
+        {
+            base
+                .Awake();
+
+            Player = FindObjectOfType<Playermovement>();
+            ScoreCounter = FindObjectOfType<ScoreCounter>();
+        }
+
         protected void Update()
         {           
             if (!Playermovement.IsPlaying)
@@ -215,14 +226,5 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         }
 
         #endregion
-
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            if(collision.gameObject.tag == "RedWall")
-            {
-                
-            }
-        }
-
     }
 }
