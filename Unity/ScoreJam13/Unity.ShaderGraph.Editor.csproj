@@ -343,9 +343,9 @@
     <Compile Include="Library\PackageCache\com.unity.shadergraph@11.0.0\Editor\Data\Legacy\IMasterNode1.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@11.0.0\Editor\Generation\Targets\VFXTarget.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@11.0.0\Editor\Data\Graphs\Vector3ShaderProperty.cs" />
-    <Compile Include="Library\PackageCache\com.unity.shadergraph@11.0.0\Editor\Data\Nodes\Math\Advanced\AbsoluteNode.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@11.0.0\Editor\Generation\Data\ConditionalField.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@11.0.0\Editor\Data\Nodes\Artistic\Adjustment\ReplaceColorNode.cs" />
+    <Compile Include="Library\PackageCache\com.unity.shadergraph@11.0.0\Editor\Data\Nodes\Math\Advanced\AbsoluteNode.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@11.0.0\Editor\Data\Nodes\Math\Basic\DivideNode.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@11.0.0\Editor\Data\Nodes\Math\Vector\SphereMaskNode.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@11.0.0\Editor\Drawing\Controls\CubemapControl.cs" />
