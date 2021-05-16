@@ -379,6 +379,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3605405913648414206, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -88
+      objectReference: {fileID: 0}
+    - target: {fileID: 3999356086227269947, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -88
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579702238213150673, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -118
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579702238558819048, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -118
+      objectReference: {fileID: 0}
     - target: {fileID: 8990906961078200355, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
       propertyPath: m_Name
       value: Main Camera

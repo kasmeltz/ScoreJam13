@@ -701,6 +701,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6579702237470965806, guid: abb0f683bf767634db8e940e366c5205, type: 3}
+      propertyPath: score
+      value: 
+      objectReference: {fileID: 8321519118466283107}
+    - target: {fileID: 6579702237470965806, guid: abb0f683bf767634db8e940e366c5205, type: 3}
+      propertyPath: finalscore
+      value: 
+      objectReference: {fileID: 8321519118466283107}
     - target: {fileID: 6579702237909707750, guid: abb0f683bf767634db8e940e366c5205, type: 3}
       propertyPath: m_FontData.m_FontSize
       value: 24
@@ -859,6 +867,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartButton
       objectReference: {fileID: 0}
+    - target: {fileID: 6685120851741384608, guid: abb0f683bf767634db8e940e366c5205, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb0f683bf767634db8e940e366c5205, type: 3}
 --- !u!224 &5478115520119181655 stripped
@@ -875,5 +887,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c15592d694251a4cadaa7f124fb1ea8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8321519118466283107 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8321519120266600284, guid: abb0f683bf767634db8e940e366c5205, type: 3}
+  m_PrefabInstance: {fileID: 1959881023}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

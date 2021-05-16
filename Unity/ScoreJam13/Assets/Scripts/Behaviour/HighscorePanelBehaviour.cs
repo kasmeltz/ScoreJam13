@@ -12,17 +12,22 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
     [AddComponentMenu("AScoreJam13/HighscorePanel")]
     public class HighscorePanelBehaviour : BehaviourBase
     {
+
+
         #region Members
 
         public Text NonCheatersText;
 
         public Text CheatersText;
 
+        public Text finalscore;
+
         protected HighScoreHandlerBehaviour HighScoreHandler { get; set; }
 
         protected ScoreCounter ScoreCounter { get; set; }
 
         protected ScrollingMapGeneratorBehvaiour ScrollingMapGenerator { get; set; }
+
 
         #endregion
 
@@ -39,6 +44,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 .SetActive(true);
 
             Playermovement.IsPlaying = false;
+
+            finalscore.GetComponent<Text>().text = (Mathf.RoundToInt(ScoreCounter.score)).ToString();
 
             StartCoroutine(SendHighScore());
         }
