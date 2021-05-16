@@ -257,6 +257,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1805612207, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
+      propertyPath: sounds.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805612207, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
+      propertyPath: sounds.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: b7f243aedd286b9448e99bd069fdc5dd, type: 3}
+    - target: {fileID: 1805612207, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
+      propertyPath: sounds.Array.data[3].name
+      value: Pickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805612207, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
+      propertyPath: sounds.Array.data[3].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805612207, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
+      propertyPath: sounds.Array.data[3].volume
+      value: 0.73
+      objectReference: {fileID: 0}
     - target: {fileID: 8990906961078200355, guid: 61beb7793f689d54a8ba6c419a465f15, type: 3}
       propertyPath: m_Name
       value: Main Camera
