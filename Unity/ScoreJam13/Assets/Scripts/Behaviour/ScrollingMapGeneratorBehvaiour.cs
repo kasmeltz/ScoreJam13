@@ -40,8 +40,11 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public void Reset()
         {
-            ScoreCounter
-                .Reset();
+            if (ScoreCounter != null)
+            {
+                ScoreCounter
+                    .Reset();
+            }
 
             ActualScrollSpeed = ScrollSpeed;
                 
