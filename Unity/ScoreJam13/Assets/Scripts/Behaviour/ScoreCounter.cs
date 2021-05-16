@@ -120,7 +120,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 MapGenerator.SpawnBlinkTiles = false;
             }
 
-            if (Level >= 0)
+            if (Level >= 4)
             {
                 missile.spawning = true;
             }

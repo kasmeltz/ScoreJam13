@@ -30,7 +30,7 @@ public class MissileGen : MonoBehaviour
 
             missile.transform.position = new Vector3(Random.Range(startpoint.x - 10, startpoint.x + 10), startpoint.y, startpoint.z);
 
-            //missile.transform.SetParent(holder.transform);
+            missile.transform.SetParent(holder.transform);
 
 
         }
