@@ -140,7 +140,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             float x = (Random
                 .Range(minIntX, maxIntX + 1) * 0.64f) + 0.32f;
 
-            float y = (intY * 0.64f) + ScrollY;
+            float y = (intY * 0.64f) + 0.32f - ScrollY;
 
             Vector3 worldPos = new Vector3(x, y, 0);
             var cellCoords = Floor
