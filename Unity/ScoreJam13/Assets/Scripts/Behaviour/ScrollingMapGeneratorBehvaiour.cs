@@ -24,6 +24,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public GameObject CoinHolder;
 
+        public GameObject[] powerups;
+
         protected float ScrollY { get; set; }
 
         protected Vector2 CameraEdge { get; set; }
@@ -32,7 +34,9 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected Playermovement Player { get; set; }
 
-        protected ScoreCounter ScoreCounter { get; set; }        
+        protected ScoreCounter ScoreCounter { get; set; }   
+        
+
 
         #endregion
 
@@ -140,7 +144,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             
             coin.transform.SetParent(CoinHolder.transform);
             coin.transform.position = new Vector3(x, y, 0);
-        }
+        }  
 
         protected void ScrollTiles()
         {

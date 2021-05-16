@@ -14,7 +14,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected bool IsBlinking { get; set; }
 
-        protected Vector3 BlinkVector { get; set; }
+        public Vector3 BlinkVector { get; set; }
 
         protected Vector3 Movement { get; set; }
 
@@ -109,7 +109,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             AudioManager.Playoneshot("Death");
         }
 
-        protected void Blink()
+        public void Blink()
         {
             if (ScoreCounter != null)
             {
