@@ -121,7 +121,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             }
             else
             {
-                missile.spawning = true;
+                missile.spawning = false;
             }
 
             if (Level >= 5)
