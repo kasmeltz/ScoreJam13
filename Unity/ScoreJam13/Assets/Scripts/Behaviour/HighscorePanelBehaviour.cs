@@ -33,6 +33,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected ScrollingMapGeneratorBehvaiour ScrollingMapGenerator { get; set; }
 
+        protected Playermovement Player  { get; set; }
+
         public const int VersionNumber = 2;
 
         #endregion
@@ -48,7 +50,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         {
             GameplayScreen.SetActive(true);
 
-            Playermovement.IsPlaying = false;
+            Player
+                .SetIsPlaying(false);
 
             finalscore.text = (Mathf.RoundToInt(ScoreCounter.score)).ToString();
 
@@ -78,9 +81,11 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             player
                 .Reset();
 
-            GameplayScreen.SetActive(false);
+            GameplayScreen
+                .SetActive(false);
 
-            Playermovement.IsPlaying = true;            
+            Player
+                .SetIsPlaying(true);
         }
 
         #endregion
@@ -122,7 +127,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 var date = DateTime.FromFileTime(score.fileTime);
 
                 sb
-                    .AppendLine($"<size=12>{date.ToString("g")}</size>");
+                    .AppendLine($"<size=12>{date:g}</size>");
 
                 sb.AppendLine();
 
@@ -198,7 +203,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected void OnEnable()
         {
-            Playermovement.IsPlaying = false;
+            Player
+                .SetIsPlaying(false);
 
             HighScoreHandler = FindObjectOfType<HighScoreHandlerBehaviour>();
             ScoreCounter = GetComponentInParent<ScoreCounter>();
@@ -209,8 +215,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected override void Awake()
         {
-            var player = FindObjectOfType<Playermovement>();
-            player.Died += Player_Died;
+            Player = FindObjectOfType<Playermovement>();
+            Player.Died += Player_Died;
 
             PersonalBest = LoadScore();
             

@@ -8,6 +8,14 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
     {
         #region Members
 
+        public float WallTileChance;
+
+        public float SpawnPowerUpChance;
+        
+        public float SpawnCoinChance;
+
+        public float SpawnBlinkTileChance;
+
         public bool IsDemo;
 
         public Tilemap Floor;
@@ -43,17 +51,46 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         protected ScoreCounter ScoreCounter { get; set; }
 
         protected ProbabilityChooser<PowerupBehaviourBase> PowerupProbabilityChooser { get; set; }
-        
+
+        #endregion
+
+        #region Event Handlers
+
+        private void Player_Died(object sender, System.EventArgs e)
+        {
+            Time.timeScale = 1;
+            AudioManager.GlobalPitchModifier = 1;
+        }
+
         #endregion
 
         #region Public Methods
 
         public void Reset()
         {
+            Time.timeScale = 1;
+            AudioManager.GlobalPitchModifier = 1;
+
             if (ScoreCounter != null)
             {
                 ScoreCounter
                     .Reset();
+            }
+
+            foreach (Transform item in CoinHolder.transform)
+            {
+                var powerup = item
+                    .GetComponent<PowerupBehaviourBase>();
+
+                if (powerup != null)
+                {
+                    powerup
+                        .Die();
+
+                    continue;
+                }
+
+                DestroyComponent(item);
             }
 
             SpawnBlinkTiles = false;
@@ -67,21 +104,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             CameraEdge = Camera
                 .main
                 .ViewportToWorldPoint(topRightCorner);
-
-            foreach (Transform item in CoinHolder.transform)
-            {
-                var powerup = item
-                    .GetComponent<PowerupBehaviourBase>();
-
-                if (powerup != null)
-                {
-                    powerup
-                        .DoWhenDestroyed();
-                }
-
-                DestroyComponent(item);
-            }
-
+           
             Floor
                 .ClearAllTiles();
 
@@ -205,6 +228,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
             var powerUp = Instantiate(powerUpPrefab);
 
+            powerUp.Player = Player;
+
             powerUp
                 .transform
                 .SetParent(CoinHolder.transform);
@@ -250,25 +275,25 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
                     if (!IsDemo)
                     {
-                        if (Random.value >= 0.9)
+                        if (Random.value <= WallTileChance)
                         {
                             tile = WallTiles[tileLevel];
                         }
                         else
                         {
-                            if (Random.value >= 0.998)
+                            if (Random.value <= SpawnCoinChance)
                             {
                                 SpawnCoin(bounds.xMin + x, bounds.yMax);
                             }
 
-                            if (Random.value >= 0.998)
+                            if (Random.value <= SpawnPowerUpChance)
                             {
                                 SpawnPowerUp(bounds.xMin + x, bounds.yMax);
                             }
 
                             if (SpawnBlinkTiles)
                             {
-                                if (Random.value >= 0.98)
+                                if (Random.value <= SpawnBlinkTileChance)
                                 {
                                     SpawnBlinkTile(bounds.xMin + x, bounds.yMax);
                                 }
@@ -310,6 +335,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 .Awake();
 
             Player = FindObjectOfType<Playermovement>();
+            Player.Died += Player_Died;
+
             ScoreCounter = FindObjectOfType<ScoreCounter>();
 
             PowerupProbabilityChooser = new ProbabilityChooser<PowerupBehaviourBase>();
@@ -323,7 +350,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected void Update()
         {           
-            if (!Playermovement.IsPlaying && !IsDemo)
+            if (!Player.IsPlaying && !IsDemo)
             {
                 return;
             }

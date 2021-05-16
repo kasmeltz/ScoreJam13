@@ -1,7 +1,9 @@
 namespace KasJam.ScoreJam13.Unity.Behaviours
 {
     using System;
+    using System.Collections.Generic;
     using UnityEngine;
+    using UnityEngine.UI;
 
     [AddComponentMenu("AScoreJam13/PlayerCharacterBase")]
     public class PlayermovementBase : BehaviourBase
@@ -9,6 +11,12 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         public float BlinkDistance;
 
         public float Strafespeed;
+
+        public Image ExtraLifePanel;
+
+        public Image ExtraLifePrefab;
+
+        protected int ExtraLives { get; set; }
 
         protected bool IsDead { get; set; }
 
@@ -22,12 +30,17 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected SpriteRenderer SpriteRenderer { get; set; }
 
-        protected Rigidbody2D Rigidbody { get; set; }
+        protected BoxCollider2D Collider { get; set; }
 
         protected Animator Animator { get; set; }
 
         protected ScoreCounter ScoreCounter { get; set; }
 
+        protected Vector2 OldColliderSize { get; set; }
+
+        public bool IsPlaying { get; protected set; }
+
+        public Dictionary<PowerUpType, PowerupBehaviourBase> ActivePowerups { get; set; }
 
         #region Events
 
@@ -53,14 +66,119 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public void BlinkStarted()
         {
+            IsBlinking = true;            
+            Collider.size = new Vector2(0, 0);
         }
 
         public void BlinkEnded()
         {
             IsBlinking = false;
+            Collider.size = OldColliderSize;
         }
 
         #endregion
+
+        #region Public Methods
+
+        public void SetIsPlaying(bool isPlaying)
+        {
+            IsPlaying = isPlaying;
+
+            ExtraLifePanel
+                .gameObject
+                .SetActive(isPlaying);
+        }
+
+        public void SetImmune()
+        {
+            IsBlinking = true;
+
+            var pos = transform.position + BlinkVector;
+            transform.position = GetMoveHere(pos);
+
+            Animator
+                .ResetTrigger("Blink");
+
+            Animator
+                .SetTrigger("Immune");
+
+            AudioManager
+                .Playoneshot("BlinkS");
+
+            OnBlinked();
+        }
+
+        public void Die()
+        {
+            if (IsDead)
+            {
+                return;
+            }
+
+            if (ExtraLives > 0)
+            {
+                ExtraLives--;
+
+                UpdateExtraLives();
+
+                SetImmune();
+
+                return;
+            }
+
+            IsDead = true;
+
+            transform.position = Vector2.zero;
+
+            foreach (var powerup in ActivePowerups.Values)
+            {
+                powerup
+                    .Die();
+            }
+
+            Animator
+                .ResetTrigger("Blink");
+
+            Animator
+                .ResetTrigger("Immune");
+
+            OnDied();
+
+            AudioManager
+                .Playoneshot("Death");
+        }
+
+        public void GainLife()
+        {
+            ExtraLives++;
+
+            UpdateExtraLives();
+        }
+
+        public void Blink()
+        {
+            if (IsBlinking)
+            {
+                return;
+            }
+
+            var pos = transform.position + BlinkVector;
+            transform.position = GetMoveHere(pos);
+
+            Animator
+                .SetTrigger("Blink");
+
+            AudioManager
+                .Playoneshot("BlinkS");
+
+            IsBlinking = true;
+
+            OnBlinked();
+        }
+
+        #endregion
+
+        #region Protected Methods
 
         protected Vector3 GetMoveHere(Vector3 pos)
         {
@@ -90,52 +208,26 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             return pos;
         }
 
-        public void Die()
+        protected void UpdateExtraLives()
         {
-            if (IsDead)
+            foreach (Transform transform in ExtraLifePanel.transform)
             {
-                return;
-            }
-            
-            IsDead = true;
-
-            transform.position = Vector2.zero;
-
-            Rigidbody
-                .MovePosition(Vector2.zero);
-
-            OnDied();
-            
-            AudioManager.Playoneshot("Death");
-        }
-
-        public void Blink()
-        {
-            if (IsBlinking)
-            {
-                return;
+                DestroyComponent(transform);
             }
 
-            if (ScoreCounter != null)
+            float sx = 20;
+            float sy = 0;
+            for (int i = 0; i < ExtraLives; i++)
             {
-                if (ScoreCounter.score < ScoreCounter.BlinkCost)
-                {
-                    AudioManager.Playoneshot("FailedBlink");
-                    return;
-                }
+                var extraLife = Instantiate(ExtraLifePrefab);
+                extraLife
+                    .transform
+                    .SetParent(ExtraLifePanel.rectTransform);
+
+                extraLife.rectTransform.anchoredPosition = new Vector2(sx, sy);
+
+                sx += 62;
             }
-
-            var pos = transform.position + BlinkVector;
-            transform.position = GetMoveHere(pos);
-
-            Animator
-                .SetTrigger("Blink");
-
-            AudioManager.Playoneshot("BlinkS");
-            
-            IsBlinking = true;            
-            
-            OnBlinked();
         }
 
         protected void SetVariables()
@@ -148,7 +240,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             var dir = movement.normalized;
 
             if (Mathf.Abs(dir.x) > 0.3f || Mathf.Abs(dir.y) > 0.3f)
-            { 
+            {
                 BlinkVector = dir * BlinkDistance;
 
                 Animator
@@ -157,7 +249,19 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 Animator
                     .SetFloat("Y", dir.y);
             }
+            else
+            {
+                BlinkVector = Vector2.up * BlinkDistance;
+
+                Animator
+                    .SetFloat("X", 0);
+
+                Animator
+                    .SetFloat("Y", 1);
+            }
         }
+
+        #endregion
 
         #region Unity
 
@@ -166,10 +270,17 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             base
                 .Awake();
 
+            ActivePowerups = new Dictionary<PowerUpType, PowerupBehaviourBase>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
-            Rigidbody = GetComponent<Rigidbody2D>();
+            Collider = GetComponent<BoxCollider2D>();
             Animator = GetComponent<Animator>();
             ScoreCounter = FindObjectOfType<ScoreCounter>();
+
+            ExtraLifePanel
+                .gameObject
+                .SetActive(true);
+
+            OldColliderSize = Collider.size;
         }
 
         protected virtual void Update()

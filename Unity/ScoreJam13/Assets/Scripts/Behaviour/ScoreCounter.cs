@@ -56,23 +56,18 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         private void Player_Blinked(object sender, System.EventArgs e)
         {
-            score -= BlinkCost;
-            if (score < 0)
-            {
-                score = 0;
-            }
             StartCoroutine(Shake(.1f,.2f));
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (!Playermovement.IsPlaying)
+            if (!Player.IsPlaying)
             {
                 return;
             }
 
-            score += Time.deltaTime * scoretoadd * MapGenerator.ActualScrollSpeed;
+            score += Time.unscaledDeltaTime * scoretoadd * MapGenerator.ActualScrollSpeed;
             int roundedscore = Mathf.RoundToInt(score);
             scoretxt.text = roundedscore.ToString();
 

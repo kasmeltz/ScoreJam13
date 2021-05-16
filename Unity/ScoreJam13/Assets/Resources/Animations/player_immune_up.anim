@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: player_blink_right
+  m_Name: player_immune_up
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -24,14 +24,14 @@ AnimationClip:
     - time: 0.05
       value: {fileID: -5295905010954267259, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
     - time: 0.1
-      value: {fileID: 1722811509145254301, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
-    - time: 0.3
+      value: {fileID: -8055044366983014776, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
+    - time: 1.8
       value: {fileID: -5295905010954267259, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
-    - time: 0.35
-      value: {fileID: -5811538248840819593, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
-    - time: 0.4
+    - time: 1.85
+      value: {fileID: -8013396915379329921, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
+    - time: 1.9
       value: {fileID: -5295905010954267259, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
-    - time: 0.45
+    - time: 1.95
       value: {fileID: 2639503962591498654, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
     attribute: m_Sprite
     path: 
@@ -54,9 +54,9 @@ AnimationClip:
     pptrCurveMapping:
     - {fileID: 2639503962591498654, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
     - {fileID: -5295905010954267259, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
-    - {fileID: 1722811509145254301, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
+    - {fileID: -8055044366983014776, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
     - {fileID: -5295905010954267259, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
-    - {fileID: -5811538248840819593, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
+    - {fileID: -8013396915379329921, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
     - {fileID: -5295905010954267259, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
     - {fileID: 2639503962591498654, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
   m_AnimationClipSettings:
@@ -64,7 +64,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5
+    m_StopTime: 2
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -91,7 +91,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.5
+  - time: 2
     functionName: BlinkEnded
     data: 
     objectReferenceParameter: {fileID: 0}

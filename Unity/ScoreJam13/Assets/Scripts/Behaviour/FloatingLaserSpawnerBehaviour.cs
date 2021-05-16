@@ -11,7 +11,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public GameObject FloatingLaserPrefab;
 
-        Playermovement Player;
+        protected Playermovement Player;
 
         public float SpawnFrequency;
 
@@ -29,7 +29,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         protected void Reset()
         {
             SpawnCounter = SpawnFrequency;
-            Player = FindObjectOfType<Playermovement>();
         }
 
         protected void SpawnFloatingLaser()
@@ -60,7 +59,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected void Update()
         {
-            if (!Playermovement.IsPlaying)
+            if (!Player.IsPlaying)
             {
                 return;
             }
@@ -77,6 +76,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         {
             base
                 .Awake();
+
+            Player = FindObjectOfType<Playermovement>();
 
             ScoreCounter = FindObjectOfType<ScoreCounter>();
 

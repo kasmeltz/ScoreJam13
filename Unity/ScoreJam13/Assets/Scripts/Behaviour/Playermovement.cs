@@ -1,7 +1,6 @@
 namespace KasJam.ScoreJam13.Unity.Behaviours
 {
     using System;
-    using System.Collections.Generic;
     using UnityEngine;
 
     [AddComponentMenu("AScoreJam13/PlayerCharacter")]
@@ -11,19 +10,21 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public float CoinScore;
 
-        public static bool IsPlaying { get; set; }
-
         public static string PlayerName { get; set; }
-
-        public HashSet<PowerupBehaviourBase> ActivePickups { get; set; }
-
+        
         #endregion
 
         #region Event Handlers
 
         private void Powerup_TimeExpired(object sender, EventArgs e)
         {
-            
+            var powerUp = (PowerupBehaviourBase)sender;
+
+            if (ActivePowerups.ContainsKey(powerUp.PowerUpType))
+            {
+                ActivePowerups
+                    .Remove(powerUp.PowerUpType);
+            }
         }
 
         #endregion
@@ -35,7 +36,11 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             IsDead = false;
             transform.position = Vector3.zero;
             BlinkVector = new Vector3(0, 1, 0);
-            ActivePickups = new HashSet<PowerupBehaviourBase>();
+            ExtraLives = 0;
+            UpdateExtraLives();
+            ActivePowerups
+                .Clear();
+            Collider.size = OldColliderSize;
         }
 
         #endregion
@@ -65,8 +70,21 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 AudioManager
                     .Playoneshot("Pickup");
 
+                var powerUpType = powerup.PowerUpType;
+                if (powerUpType == PowerUpType.Slowdown)
+                {
+                    if (ActivePowerups
+                        .ContainsKey(powerup.PowerUpType))
+                    {
+                        ActivePowerups[powerup.PowerUpType]
+                            .Die();
+                    }
+
+                    ActivePowerups[powerup.PowerUpType] = powerup;
+                }
+
                 powerup
-                    .PickUp(this);
+                    .PickUp();
 
                 powerup.TimeExpired += Powerup_TimeExpired;                
             }            
@@ -95,7 +113,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         {
             Reset();            
         }
-
 
         #endregion
     }

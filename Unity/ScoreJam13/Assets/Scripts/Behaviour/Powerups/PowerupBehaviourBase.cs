@@ -7,13 +7,15 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
     {
         #region Members
 
+        public PowerUpType PowerUpType;
+
         public float TimeToLive;
 
         protected float TimeAlive { get; set; }
 
         public bool IsPickedUp { get; protected set; }
 
-        protected Playermovement Player { get; set; }
+        public Playermovement Player { get; set; }
 
         #endregion
 
@@ -31,14 +33,18 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         #region Public Methods
 
-        public void PickUp(Playermovement player)
+        public void PickUp()
         {
-            Player = player;
             IsPickedUp = true;
             transform.localScale = new Vector3(0, 0, 0);
 
             DoPickedUp();
         }        
+
+        public void Die()
+        {
+            DestroyComponent(this);
+        }
 
         public abstract void DoWhenDestroyed();
 
