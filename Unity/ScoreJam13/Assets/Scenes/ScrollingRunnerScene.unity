@@ -492,9 +492,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -4249333339376487777, guid: 86b4936dba4de1840a038ae0382b728a, type: 3}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: WallTiles.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: FloorTiles.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: SpeedIncreasePerSecond
       value: 0.005
       objectReference: {fileID: 0}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: WallTiles.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 69fb01eddcfd3314997c95f21060b2bc, type: 2}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: WallTiles.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: fd7472acb6522294f8464e3766f332d2, type: 2}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: WallTiles.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0059fa367e10aaa47a9dc24ce850ee61, type: 2}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: FloorTiles.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 11f60f01a08589843917f54e48c90196, type: 2}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: FloorTiles.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: c59555fd668f42d4eaa5450198328c60, type: 2}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: FloorTiles.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3f1d49b738f1dd444b345de4d3ccf4c6, type: 2}
     - target: {fileID: 4194795612683181594, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: m_RootOrder
       value: 2
