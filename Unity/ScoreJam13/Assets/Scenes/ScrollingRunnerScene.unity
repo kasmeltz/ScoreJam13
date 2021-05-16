@@ -617,6 +617,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6422463560912469631, guid: a8c02d96b2545f14792c5c68b3232d50, type: 3}
+      propertyPath: CoinScore
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2181515672727629213, guid: a8c02d96b2545f14792c5c68b3232d50, type: 3}
       propertyPath: m_Name
       value: Playermovement
