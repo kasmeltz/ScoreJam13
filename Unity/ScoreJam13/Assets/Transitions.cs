@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Transitions : MonoBehaviour
@@ -11,15 +9,13 @@ public class Transitions : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-
     public void SwitchG()
     {
-        anim.SetBool("Global", true);
+        anim.SetTrigger("Global");
       
     }
     public void SwitchV()
     {
-        anim.SetBool("Global", false);
-        
+        anim.SetTrigger("Personal");    
     }
 }

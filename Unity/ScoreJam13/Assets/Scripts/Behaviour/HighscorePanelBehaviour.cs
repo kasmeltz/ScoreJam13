@@ -110,7 +110,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 int length = Math.Min(score.playerName.Length, 10);
 
                 sb
-                    .AppendLine($"<size=18>{position}</size>");
+                    .AppendLine($"<size=20>{position}</size>");
                 
                 sb
                     .AppendLine($"<size=18>{score.playerName.Substring(0, length)}</size>");
@@ -124,6 +124,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                     .AppendLine($"<size=12>{date.ToString("g")}</size>");
 
                 sb.AppendLine();
+
+                position++;
             }
 
             text.text = sb.ToString();
