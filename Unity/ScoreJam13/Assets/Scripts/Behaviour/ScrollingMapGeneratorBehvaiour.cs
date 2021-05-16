@@ -46,6 +46,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                     .Reset();
             }
 
+            ScrollY = 0;
+
             ActualScrollSpeed = ScrollSpeed;
                 
             Vector2 topRightCorner = new Vector2(1, 1);

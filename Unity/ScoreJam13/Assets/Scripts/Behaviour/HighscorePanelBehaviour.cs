@@ -104,35 +104,24 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         {
             StringBuilder sb = new StringBuilder();
 
+            int position = 1;
             foreach(var score in scores)
             {
                 int length = Math.Min(score.playerName.Length, 10);
 
                 sb
-                    .AppendLine($"{score.playerName.Substring(0, length)}");
-
-                //sb
-                //.AppendLine($"{score.playerName.Substring(0, length),10}");
-
-                //sb
-                //.Append("\t");
-
-                //sb
-                //.AppendLine($"{score.score,9}");
+                    .AppendLine($"<size=18>{position}</size>");
+                
+                sb
+                    .AppendLine($"<size=18>{score.playerName.Substring(0, length)}</size>");
 
                 sb
-                    .AppendLine($"{score.score}");
-
-                //sb
-                //.Append("\t");
+                    .AppendLine($"<size=18>{score.score}</size>");
 
                 var date = DateTime.FromFileTime(score.fileTime);
 
-                //sb
-                //.AppendLine($"{date.ToString("g"),20}");
-
                 sb
-                    .AppendLine($"{date.ToString("g")}");
+                    .AppendLine($"<size=12>{date.ToString("g")}</size>");
 
                 sb.AppendLine();
             }
@@ -150,7 +139,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 .scores
                 .Where(o => !o.cheating)
                 .OrderByDescending(o => o.score)
-                .Take(10)
+                .Take(8)
                 .ToList();
 
             var cheaters = HighScoreHandler
@@ -158,7 +147,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 .scores
                 .Where(o => o.cheating)
                 .OrderByDescending(o => o.score)
-                .Take(10)
+                .Take(8)
                 .ToList();
 
             SetHighScoreList(nonCheaters, NonCheatersText);
