@@ -13,8 +13,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
     [AddComponentMenu("AScoreJam13/HighscorePanel")]
     public class HighscorePanelBehaviour : BehaviourBase
     {
-
-
         #region Members
 
         public Text NonCheatersText;
@@ -60,7 +58,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 
             }
 
-            PBtxt.text = PersonalBest.ToString();
+            int pbInt = Mathf.RoundToInt(PersonalBest);
+            PBtxt.text = pbInt.ToString();
             StartCoroutine(SendHighScore());
         }
 
@@ -110,20 +109,30 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 int length = Math.Min(score.playerName.Length, 10);
 
                 sb
-                    .Append($"{score.playerName.Substring(0, length),10}");
-                
-                sb
-                    .Append("\t");
+                    .AppendLine($"{score.playerName.Substring(0, length)}");
 
-                sb.Append($"{score.score,9}");
+                //sb
+                //.AppendLine($"{score.playerName.Substring(0, length),10}");
+
+                //sb
+                //.Append("\t");
+
+                //sb
+                //.AppendLine($"{score.score,9}");
 
                 sb
-                    .Append("\t");
+                    .AppendLine($"{score.score}");
+
+                //sb
+                //.Append("\t");
 
                 var date = DateTime.FromFileTime(score.fileTime);
 
+                //sb
+                //.AppendLine($"{date.ToString("g"),20}");
+
                 sb
-                    .Append($"{date.ToLongDateString(),20}");
+                    .AppendLine($"{date.ToString("g")}");
 
                 sb.AppendLine();
             }
@@ -141,7 +150,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 .scores
                 .Where(o => !o.cheating)
                 .OrderByDescending(o => o.score)
-                .Take(25)
+                .Take(10)
                 .ToList();
 
             var cheaters = HighScoreHandler
@@ -149,7 +158,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 .scores
                 .Where(o => o.cheating)
                 .OrderByDescending(o => o.score)
-                .Take(25)
+                .Take(10)
                 .ToList();
 
             SetHighScoreList(nonCheaters, NonCheatersText);
@@ -206,7 +215,9 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             player.Died += Player_Died;
 
             PersonalBest = LoadScore();
-            PBtxt.text = PersonalBest.ToString();
+            
+            int pbInt = Mathf.RoundToInt(PersonalBest);
+            PBtxt.text = pbInt.ToString();
         }
       
         #endregion
