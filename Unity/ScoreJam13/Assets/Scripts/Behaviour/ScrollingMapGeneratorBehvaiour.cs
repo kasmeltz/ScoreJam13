@@ -135,10 +135,11 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             float x = Random.Range(minX, maxX);
             float y = Random.Range(maxY, maxY);
 
-
-
+            
             coin.transform.SetParent(CoinHolder.transform);
             coin.transform.position = new Vector3(x, y, 0);
+
+
         }
 
         protected void ScrollTiles()
@@ -214,5 +215,14 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         }
 
         #endregion
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if(collision.gameObject.tag == "RedWall")
+            {
+                
+            }
+        }
+
     }
 }

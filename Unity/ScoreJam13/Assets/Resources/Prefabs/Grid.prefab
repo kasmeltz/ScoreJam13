@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5308045647877451405}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: RedWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
