@@ -22,7 +22,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             var laser = Instantiate(LaserPrefab);
 
             laser.transform.SetParent(transform);
-            laser.transform.position = Vector3.zero;
+            laser.transform.position = transform.position;
             laser.transform.eulerAngles = transform.eulerAngles;
         }
 
