@@ -111,6 +111,11 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public void Blink()
         {
+            if (IsBlinking)
+            {
+                return;
+            }
+
             if (ScoreCounter != null)
             {
                 if (ScoreCounter.score < ScoreCounter.BlinkCost)

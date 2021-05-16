@@ -36,7 +36,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
             if (coin != null)
             {
-
                 AudioManager.Playoneshot("Pickup");
                 ScoreCounter.score += CoinScore;
 

@@ -16,6 +16,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public TileBase[] WallTiles;
 
+        public BlinkPowerUp[] BlinkTilePrefabs;
+
         public float ScrollSpeed;
 
         public float SpeedIncreasePerSecond;
@@ -23,6 +25,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         public CoinBehaviour CoinPrefab;
 
         public GameObject CoinHolder;
+
+        public bool SpawnBlinkTiles { get; set; }
 
         protected float ScrollY { get; set; }
 
@@ -33,7 +37,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         protected Playermovement Player { get; set; }
 
         protected ScoreCounter ScoreCounter { get; set; }        
-
+        
         #endregion
 
         #region Public Methods
@@ -45,6 +49,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 ScoreCounter
                     .Reset();
             }
+
+            SpawnBlinkTiles = false;
 
             ScrollY = 0;
 
@@ -102,7 +108,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             foreach (Transform child in CoinHolder.transform)
             {
                 bool shouldScroll = false;
-                if (child.gameObject.CompareTag("Coin"))
+                if (child.gameObject.CompareTag("Coin") ||
+                    child.gameObject.CompareTag("BlinkTile"))
                 {
                     shouldScroll = true;
                 }
@@ -113,7 +120,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 }
 
                 bool shouldBeRemoved = false;
-                if (child.gameObject.CompareTag("Coin"))
+                if (child.gameObject.CompareTag("Coin") ||
+                    child.gameObject.CompareTag("BlinkTile"))
                 {
                     shouldBeRemoved = true;
                 }
@@ -159,6 +167,25 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             var coin = Instantiate(CoinPrefab);
             coin.transform.SetParent(CoinHolder.transform);
             coin.transform.position = worldPos;
+        }
+        
+        protected void SpawnBlinkTile(int mapX, int mapY)
+        {
+            var worldPos = Floor
+                .CellToWorld(new Vector3Int(mapX, mapY, 0));
+
+            int index = Random
+                .Range(0, BlinkTilePrefabs.Length);
+
+            var prefab = BlinkTilePrefabs[index];
+
+            var tile = Instantiate(prefab);
+
+            tile
+                .transform
+                .SetParent(CoinHolder.transform);
+
+            tile.transform.position = worldPos + new Vector3(0.32f, 0.32f, 0);
         }
 
         protected void ScrollTiles()
@@ -211,10 +238,21 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                         {
                             tile = WallTiles[tileLevel];
                         }
+                        else
+                        {
+                            if (SpawnBlinkTiles)
+                            {
+                                if (Random.value >= 0.97)
+                                {
+                                    SpawnBlinkTile(bounds.xMin + x, bounds.yMax);
+                                }
+                            }
+                        }
                     }
 
                     tiles[x] = tile;
                 }
+
                 var addBounds = new BoundsInt(bounds.xMin, bounds.yMax, 0, bounds.size.x, 1, 1);
                 Floor
                     .SetTilesBlock(addBounds, tiles);

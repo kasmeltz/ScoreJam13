@@ -8,6 +8,7 @@ TagManager:
   - FloatingLaser
   - Coin
   - RedWall
+  - BlinkTile
   layers:
   - Default
   - TransparentFX

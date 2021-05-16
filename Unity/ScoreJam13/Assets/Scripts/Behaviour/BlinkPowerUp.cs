@@ -29,7 +29,9 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         protected void Blink()
         {
             Player.BlinkVector = Direction * Player.BlinkDistance;
-            Player.Blink();
+            
+            Player
+                .Blink();
         }
     }
 }

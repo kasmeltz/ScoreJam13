@@ -1178,6 +1178,26 @@ PrefabInstance:
       propertyPath: FloorTiles.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: 3f1d49b738f1dd444b345de4d3ccf4c6, type: 2}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: BlinkTilePrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: BlinkTilePrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 3698300088742119960, guid: 821e1ae2725f2da4db6d8e08ab9feb0d, type: 3}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: BlinkTilePrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 6294841083418270469, guid: 2db3d80c9b6a29d429fc21b5efa7d28c, type: 3}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: BlinkTilePrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 4631425869369472696, guid: 44817616bfd24e24ba7dd886220e77fe, type: 3}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: BlinkTilePrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 4631425869369472696, guid: 44817616bfd24e24ba7dd886220e77fe, type: 3}
     - target: {fileID: 4194795612683181594, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -3769,13 +3789,13 @@ MonoBehaviour:
   BlinkCost: 15
   LevelScoresRequired:
   - 0
-  - 0
-  - 0
-  - 8000
-  - 8000
-  - 8000
-  - 8000
-  - 8000
+  - 1000
+  - 2000
+  - 3000
+  - 4000
+  - 5000
+  - 6000
+  - 7000
   - 8000
   - 9000
   scoretxt: {fileID: 8990906961919117790}

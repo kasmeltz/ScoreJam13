@@ -83,6 +83,10 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 {
                     Level = i;
                 }
+                else
+                {
+                    break;
+                }
             }
            
             if (Level >= 1)
@@ -104,6 +108,15 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             }
 
             if (Level >= 3)
+            {
+                MapGenerator.SpawnBlinkTiles = true;
+            }
+            else
+            {
+                MapGenerator.SpawnBlinkTiles = false;
+            }
+
+            if (Level >= 4)
             {
                 laser.Rotating = true;
             }
