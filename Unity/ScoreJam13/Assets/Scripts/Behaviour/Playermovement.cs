@@ -86,7 +86,14 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 powerup
                     .PickUp();
 
-                powerup.TimeExpired += Powerup_TimeExpired;                
+                if (powerUpType == PowerUpType.Slowdown)
+                {
+                    powerup.TimeExpired += Powerup_TimeExpired;
+                } 
+                else
+                {
+                    DestroyComponent(powerup);
+                }
             }            
         }
 
