@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BlinkDistance: 1
   Strafespeed: 3
-  CoinScore: 500
+  CoinScore: 200
 --- !u!50 &66342484
 Rigidbody2D:
   serializedVersion: 4
