@@ -8,6 +8,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
     {
         #region Members
 
+        public bool IsDemo;
+
         public Tilemap Floor;
 
         public TileBase[] FloorTiles;
@@ -30,7 +32,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected Playermovement Player { get; set; }
 
-        protected ScoreCounter ScoreCounter { get; set; }
+        protected ScoreCounter ScoreCounter { get; set; }        
 
         #endregion
 
@@ -128,7 +130,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
             float minX = -CameraEdge.x - w;
             float maxX = CameraEdge.x + w;
-            float minY = -CameraEdge.y - h;
             float maxY = CameraEdge.y + h;
 
             float x = Random.Range(minX, maxX);
@@ -140,15 +141,23 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected void ScrollTiles()
         {
-            int tileLevel = ScoreCounter.Level / 2;
-            if (tileLevel >= FloorTiles.Length)
+            int tileLevel = 0;
+            if (!IsDemo)
             {
-                tileLevel = FloorTiles.Length - 1;
+                tileLevel = ScoreCounter.Level / 2;
+                if (tileLevel >= FloorTiles.Length)
+                {
+                    tileLevel = FloorTiles.Length - 1;
+                }
             }
 
-            if (Random.value >= 0.998)
+            if (!IsDemo)
             {
-                SpawnCoin();
+
+                if (Random.value >= 0.998)
+                {
+                    SpawnCoin();
+                }
             }
 
             var toScroll = Time.deltaTime * ActualScrollSpeed;
@@ -156,7 +165,10 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             Vector3 scrollVector = new Vector3(0, -toScroll, 0);
             Floor.transform.position += scrollVector;
 
-            UpdateChildren(scrollVector);
+            if (!IsDemo)
+            {
+                UpdateChildren(scrollVector);
+            }
 
             ScrollY += toScroll;
 
@@ -171,9 +183,13 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 for (int x = 0; x < bounds.size.x; x++)
                 {
                     var tile = FloorTiles[tileLevel];
-                    if (Random.value >= 0.9)
+
+                    if (!IsDemo)
                     {
-                        tile = WallTiles[tileLevel];
+                        if (Random.value >= 0.9)
+                        {
+                            tile = WallTiles[tileLevel];
+                        }
                     }
 
                     tiles[x] = tile;
@@ -214,7 +230,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected void Update()
         {           
-            if (!Playermovement.IsPlaying)
+            if (!Playermovement.IsPlaying && !IsDemo)
             {
                 return;
             }
