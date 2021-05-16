@@ -92,14 +92,25 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected void OnCollisionStay2D(Collision2D collision)
         {
-            if(!IsBlinking)
+            if (!IsBlinking)
             {
+                var missile = collision.collider
+                    .GetComponent<Missile>();
+
+                if (missile != null)
+                {
+                    DestroyComponent(missile);
+                }
+
                 Die();
-            }            
+            }
         }
 
         protected override void Update()
         {
+            Rigidbody.angularVelocity = 0;
+            Rigidbody.velocity = Vector3.zero;
+
             if (!IsPlaying)
             {
                 return;

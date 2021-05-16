@@ -32,6 +32,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected BoxCollider2D Collider { get; set; }
 
+        protected Rigidbody2D Rigidbody { get; set; }
+
         protected Animator Animator { get; set; }
 
         protected ScoreCounter ScoreCounter { get; set; }
@@ -270,6 +272,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             base
                 .Awake();
 
+            Rigidbody = GetComponent<Rigidbody2D>();
             ActivePowerups = new Dictionary<PowerUpType, PowerupBehaviourBase>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
             Collider = GetComponent<BoxCollider2D>();

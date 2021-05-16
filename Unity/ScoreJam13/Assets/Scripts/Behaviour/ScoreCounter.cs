@@ -121,7 +121,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             }
             else
             {
-                missile.spawning = false;
+                missile.spawning = true;
             }
 
             if (Level >= 5)
@@ -132,8 +132,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             {
                 laser.Rotating = false;
             }
-        }
-        
+        }        
 
         public IEnumerator Shake(float duration, float magnitude)
         {

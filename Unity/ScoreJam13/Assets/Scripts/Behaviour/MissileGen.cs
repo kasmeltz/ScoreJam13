@@ -1,47 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class MissileGen : MonoBehaviour
+namespace KasJam.ScoreJam13.Unity.Behaviours
 {
-    public GameObject missilesprite;
+    using UnityEngine;
 
-    Vector3 startpoint;
-
-    public GameObject holder;
-
-    public float spawnTime;
-
-    public bool spawning;
-
-
-    // Start is called before the first frame update
-    void Start()
+    public class MissileGen : MonoBehaviour
     {
-        startpoint = transform.position;
-        Invoke(nameof(AttemptSpawn), spawnTime);
-    }
+        public GameObject missilesprite;
 
-    void Spawn()
-    {
-        if(spawning)
+        Vector3 startpoint;
+
+        public GameObject holder;
+
+        public float spawnTime;
+
+        public bool spawning;
+
+
+        // Start is called before the first frame update
+        void Start()
         {
-            GameObject missile = Instantiate(missilesprite);
+            startpoint = transform.position;
+            Invoke(nameof(AttemptSpawn), spawnTime);
+        }
 
-            missile.transform.position = new Vector3(Random.Range(startpoint.x - 10, startpoint.x + 10), startpoint.y, startpoint.z);
+        void Spawn()
+        {
+            if (spawning)
+            {
+                GameObject missile = Instantiate(missilesprite);
+                missile.transform.position = new Vector3(Random.Range(startpoint.x - 10, startpoint.x + 10), startpoint.y, startpoint.z);
+                missile.transform.SetParent(holder.transform);
+            }
+        }
 
-            missile.transform.SetParent(holder.transform);
-
-
+        void AttemptSpawn()
+        {
+            Spawn();
+            Invoke(nameof(AttemptSpawn), spawnTime);
         }
     }
-
-    void AttemptSpawn()
-    {
-        Spawn();
-
-        Invoke(nameof(AttemptSpawn), spawnTime);
-    }
-
-
 }
