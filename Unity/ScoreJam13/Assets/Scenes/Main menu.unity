@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 345293093}
   - component: {fileID: 345293090}
   m_Layer: 5
-  m_Name: Title (1)
+  m_Name: controls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3072,6 +3072,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NonCheatersText: {fileID: 6579702239301014527}
   CheatersText: {fileID: 6579702237479343816}
+  finalscore: {fileID: 0}
 --- !u!114 &6579702238362807615
 MonoBehaviour:
   m_ObjectHideFlags: 0
