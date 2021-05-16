@@ -3769,8 +3769,8 @@ MonoBehaviour:
   BlinkCost: 15
   LevelScoresRequired:
   - 0
-  - 1000
-  - 3000
+  - 0
+  - 0
   - 8000
   - 8000
   - 8000

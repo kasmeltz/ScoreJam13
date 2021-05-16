@@ -1,53 +1,35 @@
 namespace KasJam.ScoreJam13.Unity.Behaviours
 {
-    using System.Collections;
-    using System.Collections.Generic;
     using UnityEngine;
 
-    public class BlinkPowerUp : MonoBehaviour
-    {
-        public PlayermovementBase player;
-        public bool test;
+    [AddComponentMenu("AScoreJam13/BlinkTile")]
+    public class BlinkPowerUp : BehaviourBase
+    {        
+        public Vector2 Direction;
 
-        private void Update()
+        protected Playermovement Player { get; set; }
+
+        #region Unity
+
+        protected void OnTriggerEnter2D(Collider2D collision)
         {
-            if(test)
-            {
-                RandomBlink();
-                test = false;
-            }
+            Blink();
         }
 
-        protected void RandomBlink()
+        protected override void Awake()
         {
+            base
+                .Awake();
 
-            print("blink");
-            int dir = Random.Range(0, 4);
+            Player = FindObjectOfType<Playermovement>();
+        }
 
-            player.Blink();
+        #endregion
 
-            if(dir == 0)
-            {
-                player.BlinkVector = new Vector3(1, 0, 0) * player.BlinkDistance;
-            }
-
-            if (dir == 1)
-            {
-                player.BlinkVector = new Vector3(-1, 0, 0) * player.BlinkDistance;
-            }
-
-            if (dir == 2)
-            {
-                player.BlinkVector = new Vector3(0, 1, 0) * player.BlinkDistance;
-            }
-
-            if (dir == 3)
-            {
-                player.BlinkVector = new Vector3(0, -1, 0) * player.BlinkDistance;
-            }
-
-            player.Blink();
-
+        protected void Blink()
+        {
+            Player.BlinkVector = Direction * Player.BlinkDistance;
+            Player.Blink();
         }
     }
 }
