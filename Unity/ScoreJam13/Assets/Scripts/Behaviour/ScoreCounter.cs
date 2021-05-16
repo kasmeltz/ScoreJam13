@@ -24,6 +24,9 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected ScrollingMapGeneratorBehvaiour MapGenerator { get; set; }
 
+        protected MissileGen missile { get; set; }
+
+
         public void Reset()
         {
             Level = 0;
@@ -48,6 +51,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             MapGenerator = FindObjectOfType<ScrollingMapGeneratorBehvaiour>();
             sidePlatforms = FindObjectOfType<SidePlatforms>();
             laser = FindObjectOfType<FloatingLaserSpawnerBehaviour>();
+            missile = FindObjectOfType<MissileGen>();
             if (FindObjectOfType<Mainmenu>() == null)
             {
                 Reset();
@@ -116,7 +120,16 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 MapGenerator.SpawnBlinkTiles = false;
             }
 
-            if (Level >= 4)
+            if (Level >= 0)
+            {
+                missile.spawning = true;
+            }
+            else
+            {
+                missile.spawning = false;
+            }
+
+            if (Level >= 5)
             {
                 laser.Rotating = true;
             }
