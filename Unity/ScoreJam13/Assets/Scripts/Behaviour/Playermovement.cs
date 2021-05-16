@@ -1,6 +1,7 @@
 namespace KasJam.ScoreJam13.Unity.Behaviours
 {
     using System;
+    using System.Collections.Generic;
     using UnityEngine;
 
     [AddComponentMenu("AScoreJam13/PlayerCharacter")]
@@ -14,6 +15,17 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public static string PlayerName { get; set; }
 
+        public HashSet<PowerupBehaviourBase> ActivePickups { get; set; }
+
+        #endregion
+
+        #region Event Handlers
+
+        private void Powerup_TimeExpired(object sender, EventArgs e)
+        {
+            
+        }
+
         #endregion
 
         #region Protected Methods
@@ -23,6 +35,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             IsDead = false;
             transform.position = Vector3.zero;
             BlinkVector = new Vector3(0, 1, 0);
+            ActivePickups = new HashSet<PowerupBehaviourBase>();
         }
 
         #endregion
@@ -36,12 +49,27 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
             if (coin != null)
             {
-                AudioManager.Playoneshot("Pickup");
+                AudioManager
+                    .Playoneshot("Pickup");
+
                 ScoreCounter.score += CoinScore;
 
                 DestroyComponent(coin);
             }
 
+            var powerup = collision
+                .GetComponent<PowerupBehaviourBase>();
+
+            if (powerup != null)
+            {
+                AudioManager
+                    .Playoneshot("Pickup");
+
+                powerup
+                    .PickUp(this);
+
+                powerup.TimeExpired += Powerup_TimeExpired;                
+            }            
         }
 
         protected void OnCollisionStay2D(Collision2D collision)
@@ -65,7 +93,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected void Start()
         {
-            Reset();
+            Reset();            
         }
 
 

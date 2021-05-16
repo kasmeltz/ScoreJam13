@@ -33,6 +33,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected ScrollingMapGeneratorBehvaiour ScrollingMapGenerator { get; set; }
 
+        public const int VersionNumber = 2;
 
         #endregion
 
@@ -159,7 +160,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         protected void SaveScore(float score)
         {
             var path = Path
-                .Combine(Application.persistentDataPath, "pb.txt");
+                .Combine(Application.persistentDataPath, $"pb{VersionNumber}.txt");
 
             File
                 .WriteAllText(path, $"{score}");
@@ -174,7 +175,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         protected float LoadScore()
         {
             var path = Path
-                .Combine(Application.persistentDataPath, "pb.txt");
+                .Combine(Application.persistentDataPath, $"pb{VersionNumber}.txt");
 
             if (File
                 .Exists(path))

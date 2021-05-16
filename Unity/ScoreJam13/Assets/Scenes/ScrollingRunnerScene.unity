@@ -1299,6 +1299,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -4249333339376487777, guid: 86b4936dba4de1840a038ae0382b728a, type: 3}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: ScrollSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: Powerups.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: WallTiles.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -1306,6 +1314,10 @@ PrefabInstance:
       propertyPath: FloorTiles.Array.size
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: Powerups.Array.data[0]
+      value: 
+      objectReference: {fileID: 4537492493707707598, guid: c3f9044c2665dc64fb43db6f5e9d99bc, type: 3}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: SpeedIncreasePerSecond
       value: 0.005
@@ -1354,6 +1366,14 @@ PrefabInstance:
       propertyPath: BlinkTilePrefabs.Array.data[3]
       value: 
       objectReference: {fileID: 4631425869369472696, guid: 44817616bfd24e24ba7dd886220e77fe, type: 3}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: PowerupProbabilities.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: PowerupProbabilities.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181594, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: m_RootOrder
       value: 2
