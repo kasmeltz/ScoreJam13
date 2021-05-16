@@ -156,7 +156,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
             if (!IsDemo)
             {
-
                 if (Random.value >= 0.998)
                 {
                     SpawnCoin();
