@@ -24,8 +24,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public GameObject CoinHolder;
 
-        public GameObject[] powerups;
-
         protected float ScrollY { get; set; }
 
         protected Vector2 CameraEdge { get; set; }
@@ -34,9 +32,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected Playermovement Player { get; set; }
 
-        protected ScoreCounter ScoreCounter { get; set; }   
-        
-
+        protected ScoreCounter ScoreCounter { get; set; }        
 
         #endregion
 
@@ -129,8 +125,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected void SpawnCoin()
         {
-            var coin = Instantiate(CoinPrefab);
-
             var sr = Player.GetComponent<SpriteRenderer>();            
             var w = (sr.sprite.rect.width * Player.transform.localScale.x) / 100;
             var h = (sr.sprite.rect.height * Player.transform.localScale.y) / 100;
@@ -139,12 +133,31 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             float maxX = CameraEdge.x + w;
             float maxY = CameraEdge.y + h;
 
-            float x = Random.Range(minX, maxX);
-            float y = Random.Range(maxY, maxY);
-            
+            int minIntX = (int)minX;
+            int maxIntX = (int)maxX;
+            int intY = (int)maxY;
+
+            float x = (Random
+                .Range(minIntX, maxIntX + 1) * 0.64f) + 0.32f;
+
+            float y = (intY * 0.64f) + 0.32f - ScrollY;
+
+            Vector3 worldPos = new Vector3(x, y, 0);
+            var cellCoords = Floor
+                .WorldToCell(worldPos);
+
+            var tile = Floor
+                .GetTile(cellCoords);
+
+            if (tile == null || !tile.name.Contains("Floor"))
+            {
+                return;
+            }
+
+            var coin = Instantiate(CoinPrefab);
             coin.transform.SetParent(CoinHolder.transform);
-            coin.transform.position = new Vector3(x, y, 0);
-        }  
+            coin.transform.position = worldPos;
+        }
 
         protected void ScrollTiles()
         {
@@ -160,7 +173,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
             if (!IsDemo)
             {
-
                 if (Random.value >= 0.998)
                 {
                     SpawnCoin();

@@ -23,7 +23,11 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public Text finalscore;
 
-        protected float PersonalBest { get; set; }
+        public Text PBtxt;
+
+        public GameObject GameplayScreen;
+
+        public float PersonalBest { get; set; }
 
         protected HighScoreHandlerBehaviour HighScoreHandler { get; set; }
 
@@ -43,8 +47,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         private void Player_Died(object sender, System.EventArgs e)
         {
-            gameObject
-                .SetActive(true);
+            GameplayScreen.SetActive(true);
 
             Playermovement.IsPlaying = false;
 
@@ -54,8 +57,10 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             {
                 SaveScore(ScoreCounter.score);
                 PersonalBest = ScoreCounter.score;
+                
             }
-            
+
+            PBtxt.text = PersonalBest.ToString();
             StartCoroutine(SendHighScore());
         }
 
@@ -73,8 +78,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             player
                 .Reset();
 
-            gameObject
-                .SetActive(false);
+            GameplayScreen.SetActive(false);
 
             Playermovement.IsPlaying = true;            
         }
@@ -190,7 +194,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             Playermovement.IsPlaying = false;
 
             HighScoreHandler = FindObjectOfType<HighScoreHandlerBehaviour>();
-            ScoreCounter = FindObjectOfType<ScoreCounter>();
+            ScoreCounter = GetComponentInParent<ScoreCounter>();
             ScrollingMapGenerator = FindObjectOfType<ScrollingMapGeneratorBehvaiour>();
 
             StartCoroutine(UpdateScoreTable());
@@ -202,6 +206,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             player.Died += Player_Died;
 
             PersonalBest = LoadScore();
+            PBtxt.text = PersonalBest.ToString();
         }
       
         #endregion
