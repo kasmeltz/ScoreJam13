@@ -11,6 +11,8 @@ public class AudioManager : MonoBehaviour
 
 	public Sound[] sounds;
 
+	public float GlobalPitchModifier;
+
 	void Awake()
 	{
 		if (instance != null)
@@ -22,6 +24,8 @@ public class AudioManager : MonoBehaviour
 			instance = this;
 			
 		}
+
+		GlobalPitchModifier = 1;
 
 		foreach (Sound s in sounds)
 		{
@@ -43,10 +47,14 @@ public class AudioManager : MonoBehaviour
 		}
 
 		s.source.volume = s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
-		s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
 
+		var pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
+		pitch *= GlobalPitchModifier;
+		s.source.pitch = pitch;
+		
 		s.source.Play();
 	}
+
 	public void Playoneshot(string sound)
 	{		
 		Sound s = Array.Find(sounds, item => item.name == sound);
@@ -57,10 +65,14 @@ public class AudioManager : MonoBehaviour
 		}
 
 		s.source.volume = s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
-		s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
+
+		var pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
+		pitch *= GlobalPitchModifier;
+		s.source.pitch = pitch;
 
 		s.source.PlayOneShot(s.clip);
 	}
+
 	public void Stop(string sound)
 	{
 
