@@ -323,19 +323,13 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                             {
                                 SpawnPowerUp(bounds.xMin + x, bounds.yMax);
                             }
-                            else if (SpawnBlinkTiles)
+                            else if (SpawnBlinkTiles && Random.value <= SpawnBlinkTileChance)
                             {
-                                if (Random.value <= SpawnBlinkTileChance)
-                                {
-                                    SpawnBlinkTile(bounds.xMin + x, bounds.yMax);
-                                }
+                                SpawnBlinkTile(bounds.xMin + x, bounds.yMax);
                             }
-                            else if (SpawnBombs)
+                            else if (SpawnBombs && Random.value <= SpawnBombChance)
                             {
-                                if (Random.value <= SpawnBombChance)
-                                {
-                                    SpawnBomb(bounds.xMin + x, bounds.yMax);
-                                }
+                                SpawnBomb(bounds.xMin + x, bounds.yMax);
                             }
                         }
 
