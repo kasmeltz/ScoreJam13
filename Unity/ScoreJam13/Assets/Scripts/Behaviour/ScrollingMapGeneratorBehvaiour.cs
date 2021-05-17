@@ -259,7 +259,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             int tileLevel = 0;
             if (!IsDemo)
             {
-                tileLevel = ScoreCounter.Level / 2;
+                tileLevel = ScoreCounter.Level;
                 if (tileLevel >= FloorTiles.Length)
                 {
                     tileLevel = FloorTiles.Length - 1;

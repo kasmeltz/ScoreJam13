@@ -186,8 +186,8 @@ MonoBehaviour:
     m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
-    m_MaxSize: 40
+    m_MinSize: 0
+    m_MaxSize: 125
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -267,7 +267,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 44
+    m_MaxSize: 125
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -631,14 +631,14 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 44
+    m_MaxSize: 125
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: -Tiles Drop and the player falls to there death
+  m_Text: -Tiles Drop and the player falls to their death
 --- !u!222 &354104731
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2018,7 +2018,7 @@ MonoBehaviour:
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 3
     m_AlignByGeometry: 0
@@ -2026,7 +2026,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: -Slows down time for a little bit.
+  m_Text: -Temporarily slows down time
 --- !u!222 &1143241830
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2151,7 +2151,7 @@ PrefabInstance:
       objectReference: {fileID: 4696986127216473553, guid: 0b016848d9cb7914dafc1d9bdb057783, type: 3}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: SpawnBombChance
-      value: 0.005
+      value: 0.0075
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: SpawnCoinChance
@@ -2167,19 +2167,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: SpawnBlinkTileChance
-      value: 0.01
+      value: 0.015
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: SpawnFakeFloorChance
-      value: 0.01
+      value: 0.015
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: WallTiles.Array.size
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: FloorTiles.Array.size
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: Powerups.Array.data[0]
@@ -2210,6 +2210,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 0059fa367e10aaa47a9dc24ce850ee61, type: 2}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: WallTiles.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5330b06649baca747b9abde6d4415882, type: 2}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: WallTiles.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: ad6ba50d81ae61f41899ef9aef92fa48, type: 2}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: WallTiles.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: fc1deae120b45904b997fd3837f7c7c1, type: 2}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: WallTiles.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5d38346e1d2f2934195f90ece218c668, type: 2}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: FloorTiles.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: 11f60f01a08589843917f54e48c90196, type: 2}
@@ -2221,6 +2237,22 @@ PrefabInstance:
       propertyPath: FloorTiles.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: 3f1d49b738f1dd444b345de4d3ccf4c6, type: 2}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: FloorTiles.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 64701153e9b84e84894877fc6267be90, type: 2}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: FloorTiles.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0823614711cdcd24ca8260b92da446d3, type: 2}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: FloorTiles.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3f3f1680316a30c44beacce814041380, type: 2}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: FloorTiles.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: aba2f3f418fd9e342bf3014ff8e6d3b8, type: 2}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: BlinkTilePrefabs.Array.size
       value: 3
@@ -2367,7 +2399,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 44
+    m_MaxSize: 125
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -2601,7 +2633,7 @@ MonoBehaviour:
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 3
     m_AlignByGeometry: 0
@@ -2609,7 +2641,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '- Adds an extra life.'
+  m_Text: '- Adds an extra life'
 --- !u!222 &1426704365
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2950,14 +2982,14 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 44
+    m_MaxSize: 125
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: -Follows you around and kills on touch.
+  m_Text: -Follows the player around and kills them on touch
 --- !u!222 &1671605268
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3029,8 +3061,8 @@ MonoBehaviour:
     m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
-    m_MaxSize: 40
+    m_MinSize: 0
+    m_MaxSize: 125
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -3121,16 +3153,16 @@ MonoBehaviour:
     m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
-    m_MaxSize: 40
+    m_MinSize: 0
+    m_MaxSize: 125
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '- Shoots lasers at you to kill you and in later levels will follow your
-    position'
+  m_Text: '- Shoots lasers that kill the player on touch and in later levels it will
+    track the player''s position'
 --- !u!222 &1903757566
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3466,7 +3498,7 @@ MonoBehaviour:
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 3
     m_AlignByGeometry: 0
@@ -3474,7 +3506,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '- Makes the player invincible.'
+  m_Text: '- Makes the player invincible for a short time'
 --- !u!222 &2080450234
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4407,8 +4439,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7976603883050340025, guid: dadcb23220481404fb654be6c38c621f, type: 3}
-  m_Type: 2
+  m_Sprite: {fileID: 103704457229579516, guid: dadcb23220481404fb654be6c38c621f, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
