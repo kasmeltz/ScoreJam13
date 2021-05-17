@@ -134,3 +134,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShrapnelPrefab: {fileID: -356138690530436362, guid: 3686ab97cdca9ac439cffe19f35f7bed, type: 3}
+  MinShrapnelChange: 0.7
+  MaxShrapnelChange: 1.3

@@ -9,15 +9,16 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public ShrapnelBehaviour ShrapnelPrefab;
 
+        public float MinShrapnelChange;
+
+        public float MaxShrapnelChange;
+
         #endregion
 
         #region Animation Callbacks
 
         public void Explode()
         {
-            Debug
-                .Log("Explode");
-
             for (int x = -1; x <= 1; x++)
             {
                 for (int y = -1; y <= 1; y++)
@@ -34,7 +35,10 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                     shrapnel
                         .GetComponent<Rigidbody2D>();
 
-                    shrapnel.RigidBody.velocity = new Vector3(x, y, 0) * shrapnel.MoveSpeed;                        
+                    float fx = x * Random.Range(MinShrapnelChange, MaxShrapnelChange);
+                    float fy = y * Random.Range(MinShrapnelChange, MaxShrapnelChange);
+
+                    shrapnel.RigidBody.velocity = new Vector3(fx, fy, 0) * shrapnel.MoveSpeed;                        
                 }
             }
 
