@@ -39,6 +39,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
             Level = scoreCounter.Level;
 
+            Level = Mathf.Min(Level, 7);
+            
             Animator
                 .SetTrigger($"Idle{Level}");
         }
