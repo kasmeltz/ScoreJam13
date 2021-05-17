@@ -9,8 +9,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public Animator Animator;
 
-        public float OpenChance { get; set; }
-    
+        public float OpenChance;
+
         public bool IsOpen { get; set; }
 
         protected bool IsOpening { get; set; }
@@ -35,7 +35,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 return;
             }
 
-            if (Random.value >= OpenChance)
+            if (Random.value <= OpenChance)
             {
                 IsOpening = true;
 

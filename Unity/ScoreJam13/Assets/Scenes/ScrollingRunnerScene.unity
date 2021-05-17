@@ -1255,7 +1255,7 @@ PrefabInstance:
       objectReference: {fileID: 4696986127216473553, guid: 0b016848d9cb7914dafc1d9bdb057783, type: 3}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: SpawnBombChance
-      value: 0.015
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: SpawnCoinChance
@@ -1271,11 +1271,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: SpawnBlinkTileChance
-      value: 0.015
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: SpawnFakeFloorChance
-      value: 0.5
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: WallTiles.Array.size
@@ -4040,7 +4040,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

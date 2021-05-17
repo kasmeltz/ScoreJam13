@@ -13,6 +13,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public bool Rotating { get; set; }
 
+        public ParticleSystem PS;
         #endregion
 
         #region Animation Callbacks
@@ -41,6 +42,14 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             AudioManager.Playoneshot("Lazer");
         }
 
+        public void PlayParticle()
+        {
+            PS.Play();
+        }
+        public void CMshake()
+        {
+            StartCoroutine(FindObjectOfType<ScoreCounter>().Shake(0.2f, 0.2f));
+        }
         #endregion
 
         #region Unity

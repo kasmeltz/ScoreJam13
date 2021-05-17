@@ -89,12 +89,41 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 if (powerUpType == PowerUpType.Slowdown)
                 {
                     powerup.TimeExpired += Powerup_TimeExpired;
-                } 
+                }
                 else
                 {
                     DestroyComponent(powerup);
                 }
-            }            
+            }
+
+            var fakeFloor = collision
+                .GetComponent<DisappearingFloorBehaviour>();
+
+            if (fakeFloor != null)
+            {
+                if (fakeFloor.IsOpen)
+                {
+                    Die();
+                    
+                    return;
+                }
+            }               
+        }
+
+        protected void OnTriggerStay2D(Collider2D collision)
+        {
+            var fakeFloor = collision
+               .GetComponent<DisappearingFloorBehaviour>();
+
+            if (fakeFloor != null)
+            {
+                if (fakeFloor.IsOpen)
+                {
+                    Die();
+
+                    return;
+                }
+            }
         }
 
         protected void OnCollisionStay2D(Collision2D collision)
