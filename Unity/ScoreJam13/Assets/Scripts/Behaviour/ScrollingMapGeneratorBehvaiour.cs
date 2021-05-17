@@ -288,42 +288,10 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 // add new row of cells
                 for (int x = 0; x < bounds.size.x; x++)
                 {
-                    var tile = FloorTiles[tileLevel];
-
-                    if (!IsDemo)
+                    if (IsDemo)
                     {
-                        if (Random.value <= WallTileChance)
-                        {
-                            tile = WallTiles[tileLevel];
-                        }
-                        else
-                        {
-                            if (Random.value <= SpawnCoinChance)
-                            {
-                                SpawnCoin(bounds.xMin + x, bounds.yMax);
-                            }
-
-                            if (Random.value <= SpawnPowerUpChance)
-                            {
-                                SpawnPowerUp(bounds.xMin + x, bounds.yMax);
-                            }
-
-                            if (SpawnBlinkTiles)
-                            {
-                                if (Random.value <= SpawnBlinkTileChance)
-                                {
-                                    SpawnBlinkTile(bounds.xMin + x, bounds.yMax);
-                                }
-                            }
-
-                            if (SpawnBombs)
-                            {
-                                if (Random.value <= SpawnBombChance)
-                                {
-                                    SpawnBomb(bounds.xMin + x, bounds.yMax);
-                                }
-                            }
-                        }
+                        tiles[x] = FloorTiles[tileLevel];
+                        continue;
                     }
 
                     bool addTile = true;
@@ -339,6 +307,38 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
                     if (addTile)
                     {
+                        var tile = FloorTiles[tileLevel];
+
+                        if (Random.value <= WallTileChance)
+                        {
+                            tile = WallTiles[tileLevel];
+                        }
+                        else
+                        {
+                            if (Random.value <= SpawnCoinChance)
+                            {
+                                SpawnCoin(bounds.xMin + x, bounds.yMax);
+                            }
+                            else if (Random.value <= SpawnPowerUpChance)
+                            {
+                                SpawnPowerUp(bounds.xMin + x, bounds.yMax);
+                            }
+                            else if (SpawnBlinkTiles)
+                            {
+                                if (Random.value <= SpawnBlinkTileChance)
+                                {
+                                    SpawnBlinkTile(bounds.xMin + x, bounds.yMax);
+                                }
+                            }
+                            else if (SpawnBombs)
+                            {
+                                if (Random.value <= SpawnBombChance)
+                                {
+                                    SpawnBomb(bounds.xMin + x, bounds.yMax);
+                                }
+                            }
+                        }
+
                         tiles[x] = tile;
                     }
                 }
