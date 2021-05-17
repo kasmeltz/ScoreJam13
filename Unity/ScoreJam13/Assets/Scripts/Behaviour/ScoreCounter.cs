@@ -18,14 +18,12 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         private FloatingLaserSpawnerBehaviour laser;
         
         [SerializeField] Text scoretxt;
-
         
         protected Playermovement Player { get; set; }
 
         protected ScrollingMapGeneratorBehvaiour MapGenerator { get; set; }
 
         protected MissileGen missile { get; set; }
-
 
         public void Reset()
         {
@@ -93,9 +91,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             MapGenerator.SpawnBlinkTiles = Level >= 3;
             missile.spawning = Level >= 4;
             MapGenerator.SpawnBombs = Level >= 5;
-
-            //sidePlatforms.spawning = Level >= 6;
-
+            MapGenerator.SpawnFakeFloor = Level >= 6;
             laser.Rotating = Level >= 7;
         }        
 

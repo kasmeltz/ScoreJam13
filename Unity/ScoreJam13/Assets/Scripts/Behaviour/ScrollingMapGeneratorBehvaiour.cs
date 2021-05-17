@@ -46,6 +46,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public bool SpawnBombs { get; set; }
 
+        public bool SpawnFakeFloor { get; set; }
+
         protected float ScrollY { get; set; }
 
         protected Vector2 CameraEdge { get; set; }
