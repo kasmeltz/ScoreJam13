@@ -11,6 +11,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public float rotateSpeed = 200;
 
+        public float lifetime;
+
         protected Playermovement player;
 
         // Start is called before the first frame update
@@ -18,7 +20,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         {
             player = FindObjectOfType<Playermovement>();
             rb = GetComponent<Rigidbody2D>();
-            Invoke(nameof(Destroy), 10);
+            Invoke(nameof(Destroy), lifetime);
         }
 
         // Update is called once per frame

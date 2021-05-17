@@ -31,7 +31,9 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             if (sidePlatforms != null)
             {
                 sidePlatforms.spawning = false;
-
+            }
+            if (laser != null)
+            {
                 laser.spawning = false;
                 laser.Rotating = false;
             }
