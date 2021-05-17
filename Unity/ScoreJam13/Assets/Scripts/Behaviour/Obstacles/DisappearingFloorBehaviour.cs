@@ -7,7 +7,13 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
     {
         #region Members
 
+        public Animator Animator;
+
+        public float OpenChance { get; set; }
+    
         public bool IsOpen { get; set; }
+
+        protected bool IsOpening { get; set; }
 
         #endregion
 
@@ -21,6 +27,22 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         #endregion
 
         #region Unity
+
+        protected void Update()
+        {
+            if (IsOpening)
+            {
+                return;
+            }
+
+            if (Random.value >= OpenChance)
+            {
+                IsOpening = true;
+
+                Animator
+                    .SetTrigger("Sliding");
+            }
+        }
 
         #endregion
     }

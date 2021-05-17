@@ -2,6 +2,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 {
     using UnityEngine;
 
+    [AddComponentMenu("AScoreJam13/MissileGen")]
     public class MissileGen : MonoBehaviour
     {
         public GameObject missilesprite;

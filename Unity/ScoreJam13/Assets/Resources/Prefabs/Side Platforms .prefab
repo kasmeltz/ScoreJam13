@@ -78,6 +78,7 @@ MonoBehaviour:
   spawntime: 4
   endpoint: {fileID: 5726123380681010168}
   holder: {fileID: 0}
+  spawning: 0
 --- !u!1 &7165099667463320455
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +103,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7165099667463320455}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 528.36755, y: 371.3162, z: -427.51965}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7165099666655967996}

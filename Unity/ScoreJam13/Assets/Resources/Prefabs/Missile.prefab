@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7471340622863428420}
   - component: {fileID: 7024749034721259912}
   - component: {fileID: 810792795497420350}
+  - component: {fileID: -9185302359366789680}
   m_Layer: 7
   m_Name: Missile
   m_TagString: Untagged
@@ -152,3 +153,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-9185302359366789680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6943671413653811034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f463059eaa1099c4ba18fbcdcd66ac04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  rotateSpeed: 200

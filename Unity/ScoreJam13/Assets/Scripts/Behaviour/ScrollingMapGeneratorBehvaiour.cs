@@ -18,6 +18,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public float SpawnBombChance;
 
+        public float SpawnFakeFloorChance;
+
         public bool IsDemo;
 
         public Tilemap Floor;
@@ -42,11 +44,13 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public BombBehaviour BombPrefab;
 
+        public DisappearingFloorBehaviour FakeFloorPrefab;
+
         public bool SpawnBlinkTiles { get; set; }
 
         public bool SpawnBombs { get; set; }
 
-        public bool SpawnFakeFloor { get; set; }
+        public bool SpawnFakeFloors { get; set; }
 
         protected float ScrollY { get; set; }
 
@@ -159,10 +163,12 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 var powerup = child.GetComponent<PowerupBehaviourBase>();
                 var bomb = child.GetComponent<BombBehaviour>();
                 var blinkTile = child.GetComponent<BlinkPowerUp>();
+                var disappearing = child.GetComponent<DisappearingFloorBehaviour>();
 
                 if (coin != null || 
                     blinkTile != null || 
-                    bomb != null)
+                    bomb != null ||
+                    disappearing != null)
                 {
                     shouldScroll = true;
                 }
@@ -179,7 +185,9 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
                 bool shouldBeRemoved = false;
 
-                if (coin != null || blinkTile != null)
+                if (coin != null || 
+                    blinkTile != null ||
+                    disappearing != null)
                 {
                     shouldBeRemoved = true;
                 }
@@ -239,6 +247,11 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         protected void SpawnBomb(int mapX, int mapY)
         {
             SpawnObject(BombPrefab, mapX, mapY);
+        }
+
+        protected void SpawnFakeFloor(int mapX, int mapY)
+        {
+            SpawnObject(FakeFloorPrefab, mapX, mapY);
         }
 
         protected void ScrollTiles()
@@ -313,7 +326,21 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                         }
                     }
 
-                    tiles[x] = tile;
+                    bool addTile = true;
+                    if (SpawnFakeFloors)
+                    {
+                        if (Random.value <= SpawnFakeFloorChance)
+                        {
+                            addTile = false;
+
+                            SpawnFakeFloor(bounds.xMin + x, bounds.yMax);
+                        }
+                    }
+
+                    if (addTile)
+                    {
+                        tiles[x] = tile;
+                    }
                 }
 
                 var addBounds = new BoundsInt(bounds.xMin, bounds.yMax, 0, bounds.size.x, 1, 1);
