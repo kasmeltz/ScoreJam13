@@ -37,7 +37,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected Playermovement Player  { get; set; }
 
-        public const int VersionNumber = 2;
+        public const int VersionNumber = 4;
 
         #endregion
 
