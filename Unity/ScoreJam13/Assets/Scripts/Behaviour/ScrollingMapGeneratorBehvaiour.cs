@@ -156,13 +156,11 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 var coin = child.GetComponent<CoinBehaviour>();
                 var powerup = child.GetComponent<PowerupBehaviourBase>();
                 var bomb = child.GetComponent<BombBehaviour>();
+                var blinkTile = child.GetComponent<BlinkPowerUp>();
 
-                if (coin != null)
-                {
-                    shouldScroll = true;
-                }
-
-                if (bomb != null)
+                if (coin != null || 
+                    blinkTile != null || 
+                    bomb != null)
                 {
                     shouldScroll = true;
                 }
@@ -179,7 +177,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
                 bool shouldBeRemoved = false;
 
-                if (coin != null)
+                if (coin != null || blinkTile != null)
                 {
                     shouldBeRemoved = true;
                 }

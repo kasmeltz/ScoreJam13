@@ -92,9 +92,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             laser.spawning = Level >= 2;
             MapGenerator.SpawnBlinkTiles = Level >= 3;
             missile.spawning = Level >= 4;
-            
-            //MapGenerator.SpawnBombs = Level >= 5;
-            MapGenerator.SpawnBombs = true;
+            MapGenerator.SpawnBombs = Level >= 5;
 
             //sidePlatforms.spawning = Level >= 6;
 
