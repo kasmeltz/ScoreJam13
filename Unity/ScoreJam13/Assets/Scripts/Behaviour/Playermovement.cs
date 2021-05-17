@@ -1,6 +1,5 @@
 namespace KasJam.ScoreJam13.Unity.Behaviours
 {
-    using System;
     using UnityEngine;
 
     [AddComponentMenu("AScoreJam13/PlayerCharacter")]
