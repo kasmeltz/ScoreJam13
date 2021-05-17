@@ -29,7 +29,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         void Spawn()
         {
-            if (spawning & spawned >= max)
+            if (spawning & spawned < max)
             {
                 GameObject missile = Instantiate(missilesprite);
                 missile.transform.position = new Vector3(Random.Range(startpoint.x - 10, startpoint.x + 10), startpoint.y, startpoint.z);
