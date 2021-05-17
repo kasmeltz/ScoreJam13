@@ -1637,9 +1637,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc707491105f67a4f854e86fda829866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <AudioManager>k__BackingField: {fileID: 0}
   Holder: {fileID: 1452181023}
   FloatingLaserPrefab: {fileID: 5246927729938665034, guid: 6b79cffbb4ac9234ea12e993d715d317, type: 3}
+  Player: {fileID: 0}
   SpawnFrequency: 5
+  <SpawnCounter>k__BackingField: 0
+  <ScoreCounter>k__BackingField: {fileID: 0}
   spawning: 0
   Rotating: 0
 --- !u!4 &2113911644
