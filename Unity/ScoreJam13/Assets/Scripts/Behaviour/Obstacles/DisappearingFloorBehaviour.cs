@@ -15,6 +15,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected bool IsOpening { get; set; }
 
+        protected int Level { get; set; }
+
         #endregion
 
         #region Animation Callbacks
@@ -28,6 +30,19 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         #region Unity
 
+        protected override void Awake()
+        {
+            base
+                .Awake();
+
+            var scoreCounter = FindObjectOfType<ScoreCounter>();
+
+            Level = scoreCounter.Level;
+
+            Animator
+                .SetTrigger($"Idle{Level}");
+        }
+
         protected void Update()
         {
             if (IsOpening)
@@ -40,7 +55,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 IsOpening = true;
 
                 Animator
-                    .SetTrigger("Sliding");
+                    .SetTrigger($"Sliding{Level}");
             }
         }
 

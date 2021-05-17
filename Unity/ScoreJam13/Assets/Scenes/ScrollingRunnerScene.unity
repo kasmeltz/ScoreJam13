@@ -3387,7 +3387,7 @@ PrefabInstance:
       objectReference: {fileID: 1452181023}
     - target: {fileID: 4193082403450646515, guid: cacc25b67a4b01c4290a463df5193665, type: 3}
       propertyPath: SpawnFrequency
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4193082403450646516, guid: cacc25b67a4b01c4290a463df5193665, type: 3}
       propertyPath: m_RootOrder
@@ -5924,14 +5924,14 @@ MonoBehaviour:
   LevelScoresRequired:
   - 0
   - 1000
-  - 2000
+  - 2500
   - 4000
   - 7000
   - 10000
-  - 14000
+  - 13000
+  - 16000
   - 19000
-  - 24000
-  - 30000
+  - 22000
   scoretxt: {fileID: 8990906961919117790}
 --- !u!114 &8990906960172056424
 MonoBehaviour:
