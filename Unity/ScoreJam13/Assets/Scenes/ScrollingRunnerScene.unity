@@ -2195,7 +2195,7 @@ PrefabInstance:
       objectReference: {fileID: 3176718093545246964, guid: bd61720764d4c254c9c0b75dac141af5, type: 3}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: SpeedIncreasePerSecond
-      value: 0.005
+      value: 0.0025
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: WallTiles.Array.data[1]
