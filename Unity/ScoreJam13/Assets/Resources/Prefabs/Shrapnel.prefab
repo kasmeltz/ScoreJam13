@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 2.5
-  TimeToLive: 1.5
+  TimeToLive: 1
   RigidBody: {fileID: -7017543148059493753}
 --- !u!50 &-7017543148059493753
 Rigidbody2D:

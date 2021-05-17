@@ -25,13 +25,13 @@ AnimationClip:
       value: {fileID: -5295905010954267259, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
     - time: 0.1
       value: {fileID: -8167263065265767380, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
-    - time: 1.8
+    - time: 2.8
       value: {fileID: -5295905010954267259, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
-    - time: 1.85
+    - time: 2.85
       value: {fileID: -1198499124286260254, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
-    - time: 1.9
+    - time: 2.9
       value: {fileID: -5295905010954267259, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
-    - time: 1.95
+    - time: 2.95
       value: {fileID: 2639503962591498654, guid: 63d2de9a67b77bd40bae384fc196ee4d, type: 3}
     attribute: m_Sprite
     path: 
@@ -64,7 +64,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 2
+    m_StopTime: 3
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -91,7 +91,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2
+  - time: 3
     functionName: BlinkEnded
     data: 
     objectReferenceParameter: {fileID: 0}
