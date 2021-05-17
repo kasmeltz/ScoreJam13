@@ -3,7 +3,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
     using UnityEngine;
 
     [AddComponentMenu("AScoreJam13/MissileGen")]
-    public class MissileGen : MonoBehaviour
+    public class MissileGen : BehaviourBase
     {
         public GameObject missilesprite;
 
@@ -19,11 +19,33 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public int spawned;
 
+        protected Playermovement Player { get; set;  }
+
+        public void Reset()
+        {
+            spawning = false;
+            startpoint = transform.position;
+            spawned = 0;
+        }
+
+        protected override void Awake()
+        {
+            base
+                .Awake();
+
+            Player = FindObjectOfType<Playermovement>();
+            Player.Died += Player_Died;
+        }
+
+        private void Player_Died(object sender, System.EventArgs e)
+        {
+            Reset();
+        }
 
         // Start is called before the first frame update
         void Start()
         {
-            startpoint = transform.position;
+            Reset();
             Invoke(nameof(AttemptSpawn), spawnTime);
         }
 
