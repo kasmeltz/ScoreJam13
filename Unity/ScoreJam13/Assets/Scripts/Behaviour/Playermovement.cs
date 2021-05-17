@@ -50,17 +50,20 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
             if (powerup != null)
             {
-                AudioManager
-                    .Playoneshot("Pickup");
-
-                var powerUpType = powerup.PowerUpType;
-
-                powerup
-                    .PickUp();
-
-                if (powerUpType != PowerUpType.Slowdown)
+                if (!powerup.IsPickedUp)
                 {
-                    DestroyComponent(powerup);
+                    AudioManager
+                        .Playoneshot("Pickup");
+
+                    var powerUpType = powerup.PowerUpType;
+
+                    powerup
+                        .PickUp();
+
+                    if (powerUpType != PowerUpType.Slowdown)
+                    {
+                        DestroyComponent(powerup);
+                    }
                 }
             }
 

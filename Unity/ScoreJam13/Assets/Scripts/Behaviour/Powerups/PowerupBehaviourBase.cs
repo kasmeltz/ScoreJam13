@@ -76,8 +76,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 return;
             }
 
-            Debug.Log($"THIS {this} IsPickedUp: {IsPickedUp}");
-
             TimeAlive += Time.unscaledDeltaTime;
 
             if (TimeAlive >= TimeToLive)
