@@ -97,6 +97,9 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             transform.position = GetMoveHere(pos);
 
             Animator
+                .ResetTrigger("Immune");
+
+            Animator
                 .ResetTrigger("Blink");
 
             Animator
@@ -158,6 +161,12 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
             var pos = transform.position + BlinkVector;
             transform.position = GetMoveHere(pos);
+
+            Animator
+                .ResetTrigger("Blink");
+
+            Animator
+                .ResetTrigger("Immune");
 
             Animator
                 .SetTrigger("Blink");

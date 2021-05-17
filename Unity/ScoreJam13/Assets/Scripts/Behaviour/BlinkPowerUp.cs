@@ -13,7 +13,12 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected void OnTriggerEnter2D(Collider2D collision)
         {
-            Blink();
+            var player = collision.GetComponent<PlayermovementBase>();
+
+            if (player != null)
+            {
+                Blink();
+            }
         }
 
         protected override void Awake()
@@ -29,7 +34,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         protected void Blink()
         {
             Player.BlinkVector = Direction * Player.BlinkDistance;
-            
+
             Player
                 .Blink();
         }
