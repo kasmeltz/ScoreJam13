@@ -87,51 +87,18 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                     break;
                 }
             }
-           
-            if (Level >= 1)
-            {
-                sidePlatforms.spawning = true;
-            }
-            else
-            {
-                sidePlatforms.spawning = false;
-            }
 
-            if (Level >= 2)
-            {
-                laser.spawning = true;
-            }
-            else
-            {
-                laser.spawning = false;
-            }
+            sidePlatforms.spawning = Level >= 1;
+            laser.spawning = Level >= 2;
+            MapGenerator.SpawnBlinkTiles = Level >= 3;
+            missile.spawning = Level >= 4;
+            
+            //MapGenerator.SpawnBombs = Level >= 5;
+            MapGenerator.SpawnBombs = true;
 
-            if (Level >= 3)
-            {
-                MapGenerator.SpawnBlinkTiles = true;
-            }
-            else
-            {
-                MapGenerator.SpawnBlinkTiles = false;
-            }
+            //sidePlatforms.spawning = Level >= 6;
 
-            if (Level >= 4)
-            {
-                missile.spawning = true;
-            }
-            else
-            {
-                missile.spawning = false;
-            }
-
-            if (Level >= 5)
-            {
-                laser.Rotating = true;
-            }
-            else
-            {
-                laser.Rotating = false;
-            }
+            laser.Rotating = Level >= 7;
         }        
 
         public IEnumerator Shake(float duration, float magnitude)
@@ -142,7 +109,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
             while (elapsed < duration)
             {
-
                 float x = Random.Range(-1f, 1f) * magnitude;
                 float y = Random.Range(-1f, 1f) * magnitude;
 
