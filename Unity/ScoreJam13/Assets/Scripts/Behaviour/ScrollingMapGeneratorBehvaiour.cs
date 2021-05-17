@@ -16,6 +16,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public float SpawnBlinkTileChance;
 
+        public float SpawnBombChance;
+
         public bool IsDemo;
 
         public Tilemap Floor;
@@ -38,7 +40,13 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public GameObject CoinHolder;
 
+        public BombBehaviour BombPrefab;
+
         public bool SpawnBlinkTiles { get; set; }
+
+        public bool SpawnBombs { get; set; }
+
+        public bool SpawnFakeFloor { get; set; }
 
         protected float ScrollY { get; set; }
 
@@ -68,9 +76,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public void Reset()
         {
-            Time.timeScale = 1;
-            AudioManager.GlobalPitchModifier = 1;
-
             if (ScoreCounter != null)
             {
                 ScoreCounter
@@ -92,6 +97,9 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
                 DestroyComponent(item);
             }
+
+            Time.timeScale = 1;
+            AudioManager.GlobalPitchModifier = 1;
 
             SpawnBlinkTiles = false;
 
@@ -149,11 +157,14 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
                 var coin = child.GetComponent<CoinBehaviour>();
                 var powerup = child.GetComponent<PowerupBehaviourBase>();
+                var bomb = child.GetComponent<BombBehaviour>();
+                var blinkTile = child.GetComponent<BlinkPowerUp>();
 
-                if (coin != null)
+                if (coin != null || 
+                    blinkTile != null || 
+                    bomb != null)
                 {
                     shouldScroll = true;
-
                 }
                 
                 if (powerup != null && !powerup.IsPickedUp)
@@ -168,10 +179,9 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
                 bool shouldBeRemoved = false;
 
-                if (coin != null)
+                if (coin != null || blinkTile != null)
                 {
                     shouldBeRemoved = true;
-
                 }
 
                 if (powerup != null && !powerup.IsPickedUp)
@@ -186,55 +196,49 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             }
         }        
 
-        protected void SpawnCoin(int mapX, int mapY)
+        protected T SpawnObject<T>(T prefab, int mapX, int mapY) where T: Component
         {
             var worldPos = Floor
                 .CellToWorld(new Vector3Int(mapX, mapY, 0));
 
-            var coin = Instantiate(CoinPrefab);
-            coin
+            var item = Instantiate<T>(prefab);
+            item
                 .transform
                 .SetParent(CoinHolder.transform);
 
-            coin.transform.position = worldPos + new Vector3(0.32f, 0.32f, 0);
+            item.transform.position = worldPos + new Vector3(0.32f, 0.32f, 0);
+
+            return item;
+        }
+
+        protected void SpawnCoin(int mapX, int mapY)
+        {
+            SpawnObject(CoinPrefab, mapX, mapY);
         }
         
         protected void SpawnBlinkTile(int mapX, int mapY)
         {
-            var worldPos = Floor
-                .CellToWorld(new Vector3Int(mapX, mapY, 0));
-
             int index = Random
                 .Range(0, BlinkTilePrefabs.Length);
 
             var prefab = BlinkTilePrefabs[index];
 
-            var tile = Instantiate(prefab);
-
-            tile
-                .transform
-                .SetParent(CoinHolder.transform);
-
-            tile.transform.position = worldPos + new Vector3(0.32f, 0.32f, 0);
+            SpawnObject(prefab, mapX, mapY);
         }
 
         protected void SpawnPowerUp(int mapX, int mapY)
         {
-            var worldPos = Floor
-                .CellToWorld(new Vector3Int(mapX, mapY, 0));
-
             var powerUpPrefab = PowerupProbabilityChooser
                 .ChooseItem();
 
-            var powerUp = Instantiate(powerUpPrefab);
+            var powerUp = SpawnObject(powerUpPrefab, mapX, mapY);
 
             powerUp.Player = Player;
+        }
 
-            powerUp
-                .transform
-                .SetParent(CoinHolder.transform);
-
-            powerUp.transform.position = worldPos + new Vector3(0.32f, 0.32f, 0);
+        protected void SpawnBomb(int mapX, int mapY)
+        {
+            SpawnObject(BombPrefab, mapX, mapY);
         }
 
         protected void ScrollTiles()
@@ -296,6 +300,14 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                                 if (Random.value <= SpawnBlinkTileChance)
                                 {
                                     SpawnBlinkTile(bounds.xMin + x, bounds.yMax);
+                                }
+                            }
+
+                            if (SpawnBombs)
+                            {
+                                if (Random.value <= SpawnBombChance)
+                                {
+                                    SpawnBomb(bounds.xMin + x, bounds.yMax);
                                 }
                             }
                         }

@@ -1234,6 +1234,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1412750034}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: BombPrefab
+      value: 
+      objectReference: {fileID: 2833598511443893402, guid: 6bb110eeaeb8ac6498a2c263e5fb8968, type: 3}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: CoinHolder
       value: 
       objectReference: {fileID: 1452181023}
@@ -1250,6 +1254,10 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: SpawnBombChance
+      value: 0.015
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: SpawnCoinChance
       value: 0.005
       objectReference: {fileID: 0}
@@ -1263,7 +1271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: SpawnBlinkTileChance
-      value: 0.02
+      value: 0.015
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: WallTiles.Array.size
@@ -1629,9 +1637,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc707491105f67a4f854e86fda829866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <AudioManager>k__BackingField: {fileID: 0}
   Holder: {fileID: 1452181023}
   FloatingLaserPrefab: {fileID: 5246927729938665034, guid: 6b79cffbb4ac9234ea12e993d715d317, type: 3}
+  Player: {fileID: 0}
   SpawnFrequency: 5
+  <SpawnCounter>k__BackingField: 0
+  <ScoreCounter>k__BackingField: {fileID: 0}
   spawning: 0
   Rotating: 0
 --- !u!4 &2113911644

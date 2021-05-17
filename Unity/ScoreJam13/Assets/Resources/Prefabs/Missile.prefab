@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4550746016781906140}
   - component: {fileID: 7471340622863428420}
   - component: {fileID: 7024749034721259912}
-  - component: {fileID: 638765143551405871}
   - component: {fileID: 810792795497420350}
   m_Layer: 7
   m_Name: Missile
@@ -75,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: -5890828503606760369, guid: 836b596eba4768040bf091321f432d58, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -134,20 +133,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &638765143551405871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6943671413653811034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbc80f1e6f2c6b8408941419f45f3b08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  rotateSpeed: 200
 --- !u!95 &810792795497420350
 Animator:
   serializedVersion: 3
