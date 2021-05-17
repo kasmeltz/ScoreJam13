@@ -1270,7 +1270,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6422463560912469631, guid: a8c02d96b2545f14792c5c68b3232d50, type: 3}
       propertyPath: CoinScore
-      value: 4000
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: -6422463560912469631, guid: a8c02d96b2545f14792c5c68b3232d50, type: 3}
       propertyPath: ExtraLifePanel
@@ -2196,7 +2196,7 @@ PrefabInstance:
       objectReference: {fileID: 4696986127216473553, guid: 0b016848d9cb7914dafc1d9bdb057783, type: 3}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: SpawnBombChance
-      value: 0.01
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: SpawnCoinChance
@@ -2204,7 +2204,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: SpawnPowerUpChance
-      value: 0.001
+      value: 0.002
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: Powerups.Array.size
@@ -2212,11 +2212,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: SpawnBlinkTileChance
-      value: 0.01
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: SpawnFakeFloorChance
-      value: 0.01
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: WallTiles.Array.size
@@ -3384,9 +3384,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missilesprite: {fileID: 6943671413653811034, guid: 839d803210a4514418265ae747dfe318, type: 3}
   holder: {fileID: 1452181023}
-  spawnTime: 3
+  spawnTime: 8
   spawning: 0
-  max: 0
+  max: 3
   spawned: 0
 --- !u!1 &1975629738
 GameObject:
@@ -6046,19 +6046,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
-  scoretoadd: 20
-  BlinkCost: 15
+  scoretoadd: 25
+  BlinkCost: 0
   LevelScoresRequired:
   - 0
-  - 1000
   - 2000
-  - 3000
   - 4000
-  - 5000
   - 6000
-  - 7000
   - 8000
-  - 9000
+  - 10000
+  - 12000
+  - 14000
+  - 16000
+  - 18000
   scoretxt: {fileID: 8990906961919117790}
 --- !u!114 &8990906960172056424
 MonoBehaviour:
