@@ -279,9 +279,12 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             Animator = GetComponent<Animator>();
             ScoreCounter = FindObjectOfType<ScoreCounter>();
 
-            ExtraLifePanel
-                .gameObject
-                .SetActive(true);
+            if (ExtraLifePanel != null)
+            {
+                ExtraLifePanel
+                    .gameObject
+                    .SetActive(true);
+            }
 
             OldColliderSize = Collider.size;
         }

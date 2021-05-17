@@ -374,7 +374,11 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 .Awake();
 
             Player = FindObjectOfType<Playermovement>();
-            Player.Died += Player_Died;
+
+            if (Player != null)
+            {
+                Player.Died += Player_Died;
+            }
 
             ScoreCounter = FindObjectOfType<ScoreCounter>();
 
@@ -388,10 +392,13 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         }
 
         protected void Update()
-        {           
-            if (!Player.IsPlaying && !IsDemo)
+        {
+            if (Player != null && !IsDemo)
             {
-                return;
+                if (!Player.IsPlaying)
+                {
+                    return;
+                }
             }
 
             float speedUpdate = SpeedIncreasePerSecond * Time.deltaTime;
