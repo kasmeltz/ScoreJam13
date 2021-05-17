@@ -3911,7 +3911,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 993402308818718282}
         m_TargetAssemblyTypeName: Transitions, Assembly-CSharp
-        m_MethodName: SwitchV
+        m_MethodName: ShowGlobal
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5068,7 +5068,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 993402308818718282}
         m_TargetAssemblyTypeName: Transitions, Assembly-CSharp
-        m_MethodName: SwitchG
+        m_MethodName: ShowPersonal
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

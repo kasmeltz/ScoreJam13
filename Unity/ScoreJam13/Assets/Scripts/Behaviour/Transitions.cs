@@ -9,13 +9,14 @@ public class Transitions : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    public void SwitchG()
+    public void ShowGlobal()
     {
         anim.SetTrigger("Global");
       
     }
-    public void SwitchV()
+
+    public void ShowPersonal()
     {
-        anim.SetTrigger("Personal");    
+        anim.SetTrigger("Personal");
     }
 }
