@@ -1230,6 +1230,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1412750034}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: BombPrefab
+      value: 
+      objectReference: {fileID: 2833598511443893402, guid: 6bb110eeaeb8ac6498a2c263e5fb8968, type: 3}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: CoinHolder
       value: 
       objectReference: {fileID: 1452181023}
@@ -1246,6 +1250,14 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: FakeFloorPrefab
+      value: 
+      objectReference: {fileID: 4696986127216473553, guid: 0b016848d9cb7914dafc1d9bdb057783, type: 3}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: SpawnBombChance
+      value: 0.015
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: SpawnCoinChance
       value: 0.005
       objectReference: {fileID: 0}
@@ -1259,7 +1271,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: SpawnBlinkTileChance
-      value: 0.02
+      value: 0.015
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
+      propertyPath: SpawnFakeFloorChance
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4194795612683181593, guid: 2c0c2548adb25684c94129a4e53b4784, type: 3}
       propertyPath: WallTiles.Array.size
@@ -1596,6 +1612,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &1951642991 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6489300493565035021, guid: e8d7f40383a9cf34495149a052391739, type: 3}
+  m_PrefabInstance: {fileID: 145978846423226483}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1951642993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951642991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40992d1c4f6166042ad9e237c1912861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missilesprite: {fileID: 6943671413653811034, guid: 839d803210a4514418265ae747dfe318, type: 3}
+  holder: {fileID: 1452181023}
+  spawnTime: 3
+  spawning: 0
 --- !u!1 &2113911642
 GameObject:
   m_ObjectHideFlags: 0
@@ -1622,12 +1659,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2113911642}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc707491105f67a4f854e86fda829866, type: 3}
+  m_Script: {fileID: 11500000, guid: 47d042fd1d8f60748a86706c88bc478b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Holder: {fileID: 1452181023}
-  FloatingLaserPrefab: {fileID: 5246927729938665034, guid: 6b79cffbb4ac9234ea12e993d715d317, type: 3}
-  SpawnFrequency: 5
+  Holder: {fileID: 0}
+  FloatingLaserPrefab: {fileID: 0}
+  SpawnFrequency: 0
   spawning: 0
   Rotating: 0
 --- !u!4 &2113911644

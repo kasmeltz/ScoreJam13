@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1656556788295085615}
   - component: {fileID: 5813707340712089583}
   - component: {fileID: 6563151113477903409}
-  - component: {fileID: 360919875548305174}
+  - component: {fileID: 7874147884144875201}
   m_Layer: 0
   m_Name: FloatingLaser
   m_TagString: Untagged
@@ -105,7 +105,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &360919875548305174
+--- !u!114 &7874147884144875201
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1149398394671695345}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5251abe58c82b604dafc3b2be46c0e4c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ba8cacc86cd83c4d9a3b3a8b85ad0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LaserPrefab: {fileID: 1030802070, guid: b18e5b188756e4b468700d113554a128, type: 3}
@@ -210,6 +210,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2393179928532845709}
+  - component: {fileID: 3272262114344606513}
   m_Layer: 0
   m_Name: FloatingLaserContainer
   m_TagString: Untagged
@@ -232,3 +233,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3272262114344606513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5246927729938665034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba8cacc86cd83c4d9a3b3a8b85ad0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LaserPrefab: {fileID: 1030802070, guid: b18e5b188756e4b468700d113554a128, type: 3}
