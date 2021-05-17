@@ -42,6 +42,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public bool IsPlaying { get; protected set; }
 
+        ParticleSystem ps;
+
         public Dictionary<PowerUpType, PowerupBehaviourBase> ActivePowerups { get; set; }
 
         #region Events
@@ -278,6 +280,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             Collider = GetComponent<BoxCollider2D>();
             Animator = GetComponent<Animator>();
             ScoreCounter = FindObjectOfType<ScoreCounter>();
+            ps = GetComponent<ParticleSystem>();
 
             ExtraLifePanel
                 .gameObject
@@ -302,6 +305,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 Input.GetButtonDown("Fire1"))
             {
                 Blink();
+                //ps.Play();
+
             }
 
             var pos = transform.position + (Movement * Strafespeed * Time.deltaTime);
