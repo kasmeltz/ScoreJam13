@@ -15,10 +15,13 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         protected Playermovement player;
 
+        MissileGen missile;
+
         // Start is called before the first frame update
         void Start()
         {
             player = FindObjectOfType<Playermovement>();
+            missile = FindObjectOfType<MissileGen>();
             rb = GetComponent<Rigidbody2D>();
             Invoke(nameof(Destroy), lifetime);
         }
@@ -36,6 +39,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         private void Destroy()
         {
             DestroyComponent(this);
+            missile.spawned -= 1;
         }
 
     }
