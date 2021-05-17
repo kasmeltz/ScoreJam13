@@ -77,6 +77,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             }
 
             TimeAlive += Time.unscaledDeltaTime;
+
             if (TimeAlive >= TimeToLive)
             {
                 DoWhenDestroyed();

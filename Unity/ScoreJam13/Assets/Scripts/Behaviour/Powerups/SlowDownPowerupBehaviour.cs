@@ -51,7 +51,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             {
                 n = TimeAlive - midway;
                 d = (midway - halfDeadZone) * RampOutFactor;
-
             }
 
             n = Mathf.Min(n, d);
@@ -66,6 +65,15 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
             Time.timeScale = slowDown;
             AudioManager.GlobalPitchModifier = slowDown;
+        }
+
+        protected void OnDestroy()
+        {
+            if (IsPickedUp)
+            {
+                Time.timeScale = 1;
+                AudioManager.GlobalPitchModifier = 1;
+            }
         }
 
         #endregion

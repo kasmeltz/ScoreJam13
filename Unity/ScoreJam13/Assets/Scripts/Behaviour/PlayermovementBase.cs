@@ -42,10 +42,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public bool IsPlaying { get; protected set; }
 
-        ParticleSystem ps;
-
-        public Dictionary<PowerUpType, PowerupBehaviourBase> ActivePowerups { get; set; }
-
         #region Events
 
         public event EventHandler Blinked;
@@ -133,12 +129,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             IsDead = true;
 
             transform.position = Vector2.zero;
-
-            foreach (var powerup in ActivePowerups.Values)
-            {
-                powerup
-                    .Die();
-            }
 
             Animator
                 .ResetTrigger("Blink");
@@ -275,16 +265,17 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 .Awake();
 
             Rigidbody = GetComponent<Rigidbody2D>();
-            ActivePowerups = new Dictionary<PowerUpType, PowerupBehaviourBase>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
             Collider = GetComponent<BoxCollider2D>();
             Animator = GetComponent<Animator>();
             ScoreCounter = FindObjectOfType<ScoreCounter>();
-            ps = GetComponent<ParticleSystem>();
 
-            ExtraLifePanel
-                .gameObject
-                .SetActive(true);
+            if (ExtraLifePanel != null)
+            {
+                ExtraLifePanel
+                    .gameObject
+                    .SetActive(true);
+            }
 
             OldColliderSize = Collider.size;
         }
@@ -305,8 +296,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                 Input.GetButtonDown("Fire1"))
             {
                 Blink();
-                //ps.Play();
-
             }
 
             var pos = transform.position + (Movement * Strafespeed * Time.deltaTime);
