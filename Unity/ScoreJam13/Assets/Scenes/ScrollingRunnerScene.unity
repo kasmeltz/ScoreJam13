@@ -1269,10 +1269,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -6422463560912469631, guid: a8c02d96b2545f14792c5c68b3232d50, type: 3}
-      propertyPath: CoinScore
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: -6422463560912469631, guid: a8c02d96b2545f14792c5c68b3232d50, type: 3}
       propertyPath: ExtraLifePanel
       value: 
       objectReference: {fileID: 484837246}
@@ -3511,8 +3507,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missilesprite: {fileID: 6943671413653811034, guid: 839d803210a4514418265ae747dfe318, type: 3}
   holder: {fileID: 1452181023}
-  spawnTime: 3
+  spawnTime: 7
   spawning: 0
+  max: 3
+  spawned: 0
 --- !u!1 &1975629738
 GameObject:
   m_ObjectHideFlags: 0
