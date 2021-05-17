@@ -1,28 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class MusicManager : MonoBehaviour
+namespace KasJam.ScoreJam13.Unity.Behaviours
 {
-    AudioSource musicsource;
-    public AudioClip menumusic;
-    public AudioClip gamemusic;
-    private void Start()
+    using UnityEngine;
+
+    public class MusicManager : BehaviourBase
     {
-        musicsource = GetComponent<AudioSource>();
-        DontDestroyOnLoad(gameObject);
-        musicsource.clip = menumusic;
-    }
-    public void GameStarted()
-    {
-        musicsource.Stop();
-        musicsource.clip = gamemusic;
-        musicsource.Play();
-    }
-    public void GameEnded()
-    {
-        musicsource.Stop();
-        musicsource.clip = menumusic;
-        musicsource.Play();
+        AudioSource musicsource;
+        public AudioClip menumusic;
+        public AudioClip gamemusic;
+
+        protected override void Awake()
+        {
+            base
+                .Awake();
+
+            var other = FindObjectOfType<MusicManager>();
+            if (other != this)
+            {
+                DestroyComponent(this);
+                return;
+            }
+
+            DontDestroyOnLoad(this);
+        }
+
+        private void Start()
+        {
+            musicsource = GetComponent<AudioSource>();
+            musicsource.clip = menumusic;
+            musicsource.Play();
+        }
+
+        public void GameStarted()
+        {
+            musicsource.Stop();
+            musicsource.clip = gamemusic;
+            musicsource.Play();
+        }
+
+        public void GameEnded()
+        {
+            musicsource.Stop();
+            musicsource.clip = menumusic;
+            musicsource.Play();
+        }
     }
 }
