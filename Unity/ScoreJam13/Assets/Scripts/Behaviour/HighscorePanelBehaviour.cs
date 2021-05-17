@@ -25,6 +25,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public GameObject GameplayScreen;
 
+        MusicManager MM;
+
         public float PersonalBest { get; set; }
 
         protected HighScoreHandlerBehaviour HighScoreHandler { get; set; }
@@ -65,6 +67,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             int pbInt = Mathf.RoundToInt(PersonalBest);
             PBtxt.text = pbInt.ToString();
             StartCoroutine(SendHighScore());
+
+            MM.GameEnded();
         }
 
         #endregion
@@ -86,6 +90,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
             Player
                 .SetIsPlaying(true);
+
+            MM.GameStarted();
         }
 
         #endregion
@@ -222,6 +228,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             
             int pbInt = Mathf.RoundToInt(PersonalBest);
             PBtxt.text = pbInt.ToString();
+            MM = FindObjectOfType<MusicManager>();
         }
       
         #endregion
