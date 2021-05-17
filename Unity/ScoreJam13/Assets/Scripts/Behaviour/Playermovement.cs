@@ -14,21 +14,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
         
         #endregion
 
-        #region Event Handlers
-
-        private void Powerup_TimeExpired(object sender, EventArgs e)
-        {
-            var powerUp = (PowerupBehaviourBase)sender;
-
-            if (ActivePowerups.ContainsKey(powerUp.PowerUpType))
-            {
-                ActivePowerups
-                    .Remove(powerUp.PowerUpType);
-            }
-        }
-
-        #endregion
-
         #region Protected Methods
 
         public void Reset()
@@ -38,8 +23,6 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             BlinkVector = new Vector3(0, 1, 0);
             ExtraLives = 0;
             UpdateExtraLives();
-            ActivePowerups
-                .Clear();
             Collider.size = OldColliderSize;
         }
 
@@ -71,26 +54,11 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
                     .Playoneshot("Pickup");
 
                 var powerUpType = powerup.PowerUpType;
-                if (powerUpType == PowerUpType.Slowdown)
-                {
-                    if (ActivePowerups
-                        .ContainsKey(powerup.PowerUpType))
-                    {
-                        ActivePowerups[powerup.PowerUpType]
-                            .Die();
-                    }
-
-                    ActivePowerups[powerup.PowerUpType] = powerup;
-                }
 
                 powerup
                     .PickUp();
 
-                if (powerUpType == PowerUpType.Slowdown)
-                {
-                    powerup.TimeExpired += Powerup_TimeExpired;
-                }
-                else
+                if (powerUpType != PowerUpType.Slowdown)
                 {
                     DestroyComponent(powerup);
                 }

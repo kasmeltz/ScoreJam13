@@ -209,7 +209,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             var worldPos = Floor
                 .CellToWorld(new Vector3Int(mapX, mapY, 0));
 
-            var item = Instantiate<T>(prefab);
+            var item = Instantiate(prefab);
             item
                 .transform
                 .SetParent(CoinHolder.transform);
