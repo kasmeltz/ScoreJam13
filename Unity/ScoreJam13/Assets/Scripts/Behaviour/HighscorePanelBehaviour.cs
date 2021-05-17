@@ -68,7 +68,10 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             PBtxt.text = pbInt.ToString();
             StartCoroutine(SendHighScore());
 
-            MM.GameEnded();
+            if (MM != null)
+            {
+                MM.GameEnded();
+            }
         }
 
         #endregion
@@ -80,7 +83,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             ScoreCounter.score = 0;
             ScrollingMapGenerator
                 .Reset();
-            
+
             var player = FindObjectOfType<Playermovement>();
             player
                 .Reset();
@@ -91,7 +94,10 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             Player
                 .SetIsPlaying(true);
 
-            MM.GameStarted();
+            if (MM != null)
+            {
+                MM.GameStarted();
+            }
         }
 
         #endregion
