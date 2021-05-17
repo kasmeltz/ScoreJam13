@@ -92,8 +92,8 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
             missile.spawning = Level >= 4;
             MapGenerator.SpawnBombs = Level >= 5;
 
-            //MapGenerator.SpawnFakeFloor = Level >= 6;
-            MapGenerator.SpawnFakeFloor = true;
+            //MapGenerator.SpawnFakeFloors = Level >= 6;
+            MapGenerator.SpawnFakeFloors = true;
 
             laser.Rotating = Level >= 7;
         }        

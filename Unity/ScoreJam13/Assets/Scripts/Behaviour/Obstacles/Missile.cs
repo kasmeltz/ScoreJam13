@@ -2,6 +2,7 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 {
     using UnityEngine;
 
+    [AddComponentMenu("AScoreJam13/Missile")]
     public class Missile : BehaviourBase
     {
         public float speed = 5;
