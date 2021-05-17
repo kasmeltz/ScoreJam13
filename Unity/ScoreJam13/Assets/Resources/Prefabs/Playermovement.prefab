@@ -105,7 +105,7 @@ MonoBehaviour:
   Strafespeed: 3
   ExtraLifePanel: {fileID: 0}
   ExtraLifePrefab: {fileID: 0}
-  CoinScore: 200
+  CoinScore: 300
 --- !u!50 &66342484
 Rigidbody2D:
   serializedVersion: 4

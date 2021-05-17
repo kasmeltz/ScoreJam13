@@ -15,6 +15,10 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         public bool spawning;
 
+        public int max;
+
+        public int spawned;
+
 
         // Start is called before the first frame update
         void Start()
@@ -25,11 +29,12 @@ namespace KasJam.ScoreJam13.Unity.Behaviours
 
         void Spawn()
         {
-            if (spawning)
+            if (spawning & spawned >= max)
             {
                 GameObject missile = Instantiate(missilesprite);
                 missile.transform.position = new Vector3(Random.Range(startpoint.x - 10, startpoint.x + 10), startpoint.y, startpoint.z);
                 missile.transform.SetParent(holder.transform);
+                spawned += 1;
             }
         }
 

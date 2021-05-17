@@ -697,6 +697,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -6422463560912469631, guid: a8c02d96b2545f14792c5c68b3232d50, type: 3}
+      propertyPath: CoinScore
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: -6422463560912469631, guid: a8c02d96b2545f14792c5c68b3232d50, type: 3}
       propertyPath: ExtraLifePanel
       value: 
       objectReference: {fileID: 484837246}
